@@ -71,10 +71,10 @@ export const profile = {
    *  3. Вставьте его сюда — форма сразу заработает.
    * Пока строка пустая, форма показывает подсказку и не отправляется.
    */
-  formspreeId: 'https://formspree.io/f/xwlenbvk',
+  formspreeId: 'xwlenbvk',
 
   /** Ссылка на репозиторий самого сайта — приятный штрих в футере. */
-  siteRepo: '',
+  siteRepo: 'https://github.com/GileadDev/myPortfolio',
 
   /** Бейдж «Открыт к предложениям» в первом экране. */
   openToWork: true,
