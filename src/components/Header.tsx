@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { useTheme } from '../theme/ThemeProvider';
 import { useActiveSection } from '../hooks/useReveal';
@@ -37,6 +37,9 @@ export function Header() {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  /** true, пока панель едет. Нужен, чтобы не включать фон шапки раньше времени. */
+  const [isPanelMoving, setIsPanelMoving] = useState(false);
+  const isFirstRender = useRef(true);
 
   const navItems = useMemo<NavItem[]>(() => {
     const items: NavItem[] = [
@@ -74,6 +77,19 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
+  // При закрытии isMenuOpen сбрасывается сразу, а панель едет ещё 0.5с.
+  // Без этой задержки шапка мгновенно возвращает полупрозрачный фон
+  // с backdrop-blur и «режет» уезжающую панель по своей нижней границе.
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    setIsPanelMoving(true);
+    const timer = window.setTimeout(() => setIsPanelMoving(false), 520);
+    return () => window.clearTimeout(timer);
+  }, [isMenuOpen]);
+
   // Панель живёт только до md. Если экран расширился при открытом меню,
   // она пропадает — состояние надо сбросить, иначе прокрутка останется
   // заблокированной, а кнопка «Закрыть» уедет из вида.
@@ -99,16 +115,19 @@ export function Header() {
     ? 'text-slate-300 hover:bg-white/10 hover:text-white'
     : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white';
 
+  // Фон и блюр шапки выключены не только пока меню открыто, но и всё время,
+  // пока панель движется — иначе она «обрезается» по границе шапки.
+  const showBarSurface = isScrolled && !isMenuOpen && !isPanelMoving;
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        isMenuOpen
-          ? 'border-b border-transparent'
-          : isScrolled
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          showBarSurface
             ? 'border-b border-slate-200/80 bg-slate-50/80 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/80'
             : 'border-b border-transparent'
-      }`}
-    >
+        }`}
+      >
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <a
           href="#top"
@@ -187,15 +206,18 @@ export function Header() {
             {isMenuOpen ? t('nav.closeWord') : t('nav.menuWord')}
           </button>
         </div>
-      </div>
+        </div>
+      </header>
 
-      {/* Полноэкранная панель выезжает сверху и останавливается под шапкой,
-          поэтому имя остаётся наверху, а ссылки идут уже под ним.
+      {/* Панель — сосед шапки, а не её потомок: внутри <header> она попадала
+          в его контекст наложения и перекрывалась фоном с backdrop-blur.
+          Своим z-40 она лежит под строкой шапки (z-50), но над контентом,
+          поэтому имя остаётся наверху, а ссылки идут под ним.
           visibility переключается с задержкой, чтобы уезжающая панель
           не исчезала до конца анимации. */}
       <div
         id="mobile-menu"
-        className="fixed inset-0 -z-10 md:hidden"
+        className="fixed inset-0 z-40 md:hidden"
         style={{
           translate: isMenuOpen ? '0 0' : '0 -105%',
           visibility: isMenuOpen ? 'visible' : 'hidden',
@@ -248,6 +270,6 @@ export function Header() {
           </a>
         </nav>
       </div>
-    </header>
+    </>
   );
 }
