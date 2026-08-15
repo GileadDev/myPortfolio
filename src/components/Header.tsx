@@ -138,11 +138,12 @@ export function Header() {
           <span className="from-brand-500 to-brand-700 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br font-mono text-sm font-bold text-white shadow-sm transition-transform group-hover:scale-105">
             {initials}
           </span>
-          {/* На узком экране имя обычно скрыто, но при открытом меню
-              показывается — оно становится заголовком панели. */}
+          {/* Имя показывается только когда открыта мобильная панель — там оно
+              служит её заголовком. В остальное время в шапке лежит один
+              квадрат с инициалами, иначе имя дублировало бы первый экран. */}
           <span
-            className={`truncate text-sm font-semibold transition-colors ${
-              isMenuOpen ? 'block text-white' : 'hidden text-slate-900 sm:block dark:text-white'
+            className={`truncate text-sm font-semibold text-white transition-colors md:hidden ${
+              isMenuOpen ? 'block' : 'hidden'
             }`}
           >
             {tr(profile.name)}
