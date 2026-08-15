@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <title>Serhii Malyskevych — Junior Frontend Developer</title>
+    <meta
+      name="description"
+      content="Портфолио и резюме Junior Frontend-разработчика: JavaScript, TypeScript, React, адаптивная вёрстка, REST API. Проекты, опыт, контакты. Севилья, удалённая работа."
+    />
+    <meta name="author" content="Serhii Malyskevych" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Serhii Malyskevych — Junior Frontend Developer" />
+    <meta
+      property="og:description"
+      content="JavaScript, TypeScript, React, адаптивная вёрстка, REST API. Открыт к удалённой работе."
+    />
+    <meta property="og:image" content="./og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Тема применяется до первой отрисовки, чтобы не было вспышки белым -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark =
+            stored === 'dark' ||
+            (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
