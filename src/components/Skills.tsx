@@ -11,7 +11,7 @@ export function Skills() {
         {skillGroups.map((group) => (
           <article
             key={group.title.en}
-            className="card hover:border-brand-500/50 group p-6 transition-colors"
+            className="card hover:border-brand-500/50 group p-5 transition-colors sm:p-6"
           >
             <div className="mb-4 flex items-center gap-3">
               <span className="bg-brand-500/10 text-brand-600 dark:text-brand-400 grid h-9 w-9 place-items-center rounded-lg font-mono text-sm font-bold">

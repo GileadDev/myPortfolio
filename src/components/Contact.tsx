@@ -46,14 +46,16 @@ function ContactLink({
         href={href}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel="noreferrer noopener"
-        className="hover:border-brand-500/50 flex flex-1 items-center gap-3 rounded-xl border border-slate-200 p-3 transition-colors dark:border-slate-800"
+        /* min-w-0 обязателен: у flex-элемента min-width по умолчанию auto,
+           поэтому без него длинная ссылка не обрезается, а растягивает карточку */
+        className="hover:border-brand-500/50 flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-slate-200 p-3 transition-colors dark:border-slate-800"
       >
         <span className="bg-brand-500/10 text-brand-600 dark:text-brand-400 grid h-9 w-9 shrink-0 place-items-center rounded-lg">
           <Icon className="h-4 w-4" />
         </span>
-        <span className="min-w-0">
+        <span className="min-w-0 flex-1">
           <span className="block text-xs text-slate-500 dark:text-slate-500">{label}</span>
-          <span className="block truncate font-medium text-slate-800 dark:text-slate-200">
+          <span className="block truncate text-sm font-medium text-slate-800 sm:text-base dark:text-slate-200">
             {value}
           </span>
         </span>
@@ -98,19 +100,19 @@ export function Contact() {
     profile.telegram && {
       href: profile.telegram,
       label: 'Telegram',
-      value: profile.telegram.replace(/^https?:\/\//, ''),
+      value: profile.telegram.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
       Icon: TelegramIcon,
     },
     profile.github && {
       href: profile.github,
       label: 'GitHub',
-      value: profile.github.replace(/^https?:\/\//, ''),
+      value: profile.github.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
       Icon: GitHubIcon,
     },
     profile.linkedin && {
       href: profile.linkedin,
       label: 'LinkedIn',
-      value: profile.linkedin.replace(/^https?:\/\//, ''),
+      value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
       Icon: LinkedInIcon,
     },
   ].filter(Boolean) as ContactItem[];
@@ -159,7 +161,10 @@ export function Contact() {
   return (
     <Section id="contact" title={t('contact.title')} subtitle={t('contact.subtitle')}>
       <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
-        <form onSubmit={handleSubmit} noValidate className="card space-y-5 p-6 sm:p-8">
+        {/* min-w-0 на обеих колонках сетки: иначе textarea со своей
+            внутренней шириной не даёт секции сжаться уже ~390px
+            и на телефоне появляется горизонтальная прокрутка */}
+        <form onSubmit={handleSubmit} noValidate className="card min-w-0 space-y-5 p-5 sm:p-8">
           <div>
             <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
               {t('contact.name')}
@@ -211,7 +216,7 @@ export function Contact() {
               placeholder={t('contact.messagePlaceholder')}
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? 'message-error' : undefined}
-              className={`${fieldClass(Boolean(errors.message))} resize-y`}
+              className={`${fieldClass(Boolean(errors.message))} min-w-0 resize-y`}
             />
             {errors.message && (
               <p id="message-error" className="mt-1.5 text-sm text-red-600 dark:text-red-400">
@@ -248,7 +253,7 @@ export function Contact() {
           </div>
         </form>
 
-        <div>
+        <div className="min-w-0">
           <h3 className="mb-4 font-mono text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-500">
             {t('contact.orDirect')}
           </h3>

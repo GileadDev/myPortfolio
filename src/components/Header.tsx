@@ -106,7 +106,7 @@ export function Header() {
             onClick={toggleLocale}
             aria-label={t('lang.switch')}
             title={t('lang.switch')}
-            className="h-9 rounded-lg px-2.5 font-mono text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+            className="h-10 rounded-lg px-3 font-mono text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 sm:h-9 sm:px-2.5 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
           >
             {locale === 'ru' ? 'RU' : 'EN'}
           </button>
@@ -116,7 +116,7 @@ export function Header() {
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? t('theme.toLight') : t('theme.toDark')}
             title={theme === 'dark' ? t('theme.toLight') : t('theme.toDark')}
-            className="grid h-9 w-9 place-items-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+            className="grid h-10 w-10 place-items-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 sm:h-9 sm:w-9 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
@@ -126,7 +126,7 @@ export function Header() {
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-label={isMenuOpen ? t('nav.close') : t('nav.open')}
             aria-expanded={isMenuOpen}
-            className="grid h-9 w-9 place-items-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 md:hidden dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+            className="grid h-10 w-10 place-items-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 md:hidden dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
           >
             {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>

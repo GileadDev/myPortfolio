@@ -23,7 +23,7 @@ export function About() {
           ))}
         </div>
 
-        <aside className="card h-fit p-6">
+        <aside className="card h-fit p-5 sm:p-6">
           <h3 className="mb-5 font-mono text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-500">
             {t('about.factsTitle')}
           </h3>

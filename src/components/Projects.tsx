@@ -42,7 +42,7 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white">{tr(project.title)}</h3>
         <p className="text-brand-600 dark:text-brand-400 mt-1 text-sm font-medium">
           {tr(project.summary)}
