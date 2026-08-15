@@ -13,10 +13,17 @@ export function Hero() {
   const { t, tr } = useLanguage();
 
   const socials = [
-    { href: profile.github, label: 'GitHub', Icon: GitHubIcon },
-    { href: profile.linkedin, label: 'LinkedIn', Icon: LinkedInIcon },
-    { href: profile.telegram, label: 'Telegram', Icon: TelegramIcon },
-    { href: profile.email ? `mailto:${profile.email}` : '', label: 'Email', Icon: MailIcon },
+    { key: 'github', href: profile.github, label: 'GitHub', Icon: GitHubIcon },
+    { key: 'linkedin', href: profile.linkedin, label: 'LinkedIn', Icon: LinkedInIcon },
+    { key: 'telegram', href: profile.telegram, label: 'Telegram', Icon: TelegramIcon },
+    // Конверт ведёт не в почтовый клиент, а к секции контактов: там и форма,
+    // и сам адрес с кнопкой копирования.
+    {
+      key: 'email',
+      href: profile.email ? '#contact' : '',
+      label: t('nav.contact'),
+      Icon: MailIcon,
+    },
   ].filter((social) => social.href);
 
   return (
@@ -89,19 +96,24 @@ export function Hero() {
 
           {socials.length > 0 && (
             <div className="mt-1 flex items-center gap-1 sm:mt-0 sm:ml-1">
-              {socials.map(({ href, label, Icon }) => (
+              {socials.map(({ key, href, label, Icon }) => {
+                // В новой вкладке открываем только внешние адреса.
+                // Якорь на секцию должен прокручивать текущую страницу.
+                const isExternal = href.startsWith('http');
+                return (
                 <a
-                  key={label}
+                  key={key}
                   href={href}
-                  target={href.startsWith('mailto:') ? undefined : '_blank'}
-                  rel="noreferrer noopener"
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noreferrer noopener' : undefined}
                   aria-label={label}
                   title={label}
                   className="hover:text-brand-600 dark:hover:text-brand-400 grid h-11 w-11 place-items-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/60"
                 >
                   <Icon />
                 </a>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
