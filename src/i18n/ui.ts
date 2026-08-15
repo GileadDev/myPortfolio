@@ -11,6 +11,8 @@ export const ui = {
   'nav.contact': { ru: 'Контакты', en: 'Contact' },
   'nav.open': { ru: 'Открыть меню', en: 'Open menu' },
   'nav.close': { ru: 'Закрыть меню', en: 'Close menu' },
+  'nav.menuWord': { ru: 'Меню', en: 'Menu' },
+  'nav.closeWord': { ru: 'Закрыть', en: 'Close' },
 
   'hero.available': { ru: 'Открыт к предложениям', en: 'Open to work' },
   'hero.viewProjects': { ru: 'Смотреть проекты', en: 'View projects' },
