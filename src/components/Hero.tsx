@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { profile } from '../content/profile';
 import {
@@ -11,6 +12,17 @@ import {
 
 export function Hero() {
   const { t, tr } = useLanguage();
+
+  // Подсказка нужна только тем, кто ещё не тронул страницу. Как только
+  // человек начал листать, она свою работу сделала.
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setHasScrolled(window.scrollY > 40);
+    onScroll(); // страница могла открыться уже прокрученной
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const socials = [
     { key: 'github', href: profile.github, label: 'GitHub', Icon: GitHubIcon },
@@ -124,7 +136,11 @@ export function Hero() {
       <a
         href="#about"
         aria-label={t('hero.scroll')}
-        className="absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-slate-400 transition-colors hover:text-slate-600 sm:bottom-8 sm:gap-2 dark:hover:text-slate-200"
+        aria-hidden={hasScrolled}
+        tabIndex={hasScrolled ? -1 : undefined}
+        className={`absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-slate-400 transition-all duration-500 hover:text-slate-600 sm:bottom-8 sm:gap-2 dark:hover:text-slate-200 ${
+          hasScrolled ? 'pointer-events-none translate-y-2 opacity-0' : 'opacity-100'
+        }`}
       >
         <span className="font-mono text-[0.65rem] tracking-wider uppercase sm:text-xs">
           {t('hero.scroll')}
