@@ -8,12 +8,13 @@ import { Blog } from './components/Blog';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { useLanguage } from './i18n/LanguageProvider';
+import { MobileMenuProvider } from './state/MobileMenuProvider';
 
 export default function App() {
   const { t } = useLanguage();
 
   return (
-    <>
+    <MobileMenuProvider>
       {/* Первое, что получает фокус по Tab, — ссылка «сразу к содержимому» */}
       <a
         href="#about"
@@ -33,6 +34,6 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </MobileMenuProvider>
   );
 }

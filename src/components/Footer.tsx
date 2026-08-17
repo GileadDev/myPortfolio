@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { profile } from '../content/profile';
+import { useMobileMenu } from '../state/MobileMenuProvider';
 import { ArrowUpIcon } from './Icons';
 
 export function Footer() {
   const { t, tr } = useLanguage();
+  const { isMenuOpen } = useMobileMenu();
   const [showTopButton, setShowTopButton] = useState(false);
 
   useEffect(() => {
@@ -13,6 +15,8 @@ export function Footer() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const isTopButtonVisible = showTopButton && !isMenuOpen;
 
   return (
     <>
@@ -40,12 +44,19 @@ export function Footer() {
         </div>
       </footer>
 
+      {/* Пока опущено мобильное меню, кнопки быть не должно: она висела бы
+          поверх панели. z-30 держит её под панелью (z-40) даже в момент,
+          когда та ещё едет. */}
       <a
         href="#top"
         aria-label={t('common.toTop')}
         title={t('common.toTop')}
-        className={`bg-brand-600 hover:bg-brand-500 fixed right-5 bottom-5 z-40 grid h-11 w-11 place-items-center rounded-full text-white shadow-lg transition-all duration-300 ${
-          showTopButton ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
+        aria-hidden={!isTopButtonVisible}
+        tabIndex={isTopButtonVisible ? undefined : -1}
+        className={`bg-brand-600 hover:bg-brand-500 fixed right-5 bottom-5 z-30 grid h-11 w-11 place-items-center rounded-full text-white shadow-lg transition-all duration-300 ${
+          isTopButtonVisible
+            ? 'translate-y-0 opacity-100'
+            : 'pointer-events-none translate-y-4 opacity-0'
         }`}
       >
         <ArrowUpIcon className="h-5 w-5" />

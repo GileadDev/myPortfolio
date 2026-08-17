@@ -4,6 +4,7 @@ import { useTheme } from '../theme/ThemeProvider';
 import { useActiveSection } from '../hooks/useReveal';
 import { profile } from '../content/profile';
 import { posts } from '../content/posts';
+import { useMobileMenu } from '../state/MobileMenuProvider';
 import type { UiKey } from '../i18n/ui';
 import { DocumentIcon, MoonIcon, SunIcon } from './Icons';
 
@@ -36,7 +37,7 @@ export function Header() {
   const { t, tr, locale, toggleLocale } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isMenuOpen, setIsMenuOpen } = useMobileMenu();
   /** true, пока панель едет. Нужен, чтобы не включать фон шапки раньше времени. */
   const [isPanelMoving, setIsPanelMoving] = useState(false);
   /** true, пока палец тянет панель: на это время CSS-переход отключаем. */
