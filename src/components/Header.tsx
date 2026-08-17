@@ -190,19 +190,19 @@ export function Header() {
   // доезжает только через 0.5с — за это время шапка успела бы моргнуть.
   const inMenuMode = isMenuOpen || isPanelMoving;
 
-  // В режиме меню шапка окрашена в цвет панели и сливается с ней,
-  // поэтому её содержимое на это время светлое в любой теме.
-  const barControl = inMenuMode
-    ? 'text-slate-300 hover:bg-white/10 hover:text-white'
-    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white';
+  // Панель следует за темой, поэтому содержимое шапки красится обычными
+  // цветами в любом состоянии — подменять их на светлые больше не нужно.
+  const barControl =
+    'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white';
 
   return (
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           inMenuMode
-            ? // Тот же цвет, что у панели: шапка и шторка выглядят одним полотном
-              'border-b border-transparent bg-slate-950'
+            ? // Тот же цвет, что у панели: шапка и шторка выглядят одним полотном.
+              // Без прозрачности — иначе сквозь шапку просвечивала бы страница.
+              'border-b border-transparent bg-slate-50 dark:bg-slate-950'
             : isScrolled
               ? 'border-b border-slate-200/80 bg-slate-50/80 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/80'
               : 'border-b border-transparent'
@@ -222,7 +222,7 @@ export function Header() {
               служит её заголовком. В остальное время в шапке лежит один
               квадрат с инициалами, иначе имя дублировало бы первый экран. */}
           <span
-            className={`truncate text-sm font-semibold text-white transition-colors md:hidden ${
+            className={`truncate text-sm font-semibold text-slate-900 transition-colors md:hidden dark:text-white ${
               inMenuMode ? 'block' : 'hidden'
             }`}
           >
@@ -277,11 +277,7 @@ export function Header() {
             aria-label={isMenuOpen ? t('nav.close') : t('nav.open')}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
-            className={`ml-0.5 inline-flex min-h-11 items-center gap-2.5 rounded-full border-[1.5px] px-3.5 text-[0.7rem] font-bold tracking-[0.08em] uppercase transition-colors select-none md:hidden ${
-              inMenuMode
-                ? 'border-slate-300 text-white hover:bg-white hover:text-slate-900'
-                : 'border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-slate-50 dark:border-slate-200 dark:text-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'
-            }`}
+            className="ml-0.5 inline-flex min-h-11 items-center gap-2.5 rounded-full border-[1.5px] border-slate-900 px-3.5 text-[0.7rem] font-bold tracking-[0.08em] text-slate-900 uppercase transition-colors select-none hover:bg-slate-900 hover:text-slate-50 md:hidden dark:border-slate-200 dark:text-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900"
           >
             <BurgerIcon isOpen={isMenuOpen} />
             {isMenuOpen ? t('nav.closeWord') : t('nav.menuWord')}
@@ -312,10 +308,13 @@ export function Header() {
               : 'translate .5s cubic-bezier(.7,0,.25,1), visibility 0s .5s',
         }}
       >
-        <div className="absolute inset-0 bg-slate-950" />
+        {/* Панель следует за темой: в светлой она светлая, в тёмной — тёмная.
+            Цвета совпадают с фоном страницы, поэтому шторка читается как
+            её продолжение, а не как чужеродный слой. */}
+        <div className="absolute inset-0 bg-slate-50 dark:bg-slate-950" />
         <div
           aria-hidden="true"
-          className="bg-brand-600/25 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
+          className="bg-brand-500/20 dark:bg-brand-600/25 absolute -top-24 -right-20 h-72 w-72 rounded-full blur-3xl"
         />
 
         <nav
@@ -328,8 +327,10 @@ export function Header() {
               key={item.id}
               href={`#${item.id}`}
               onClick={() => setIsMenuOpen(false)}
-              className={`border-b border-white/12 py-3.5 text-[1.7rem] leading-tight font-bold tracking-tight transition-[opacity,translate,color] duration-[350ms] ${
-                activeSection === item.id ? 'text-brand-400' : 'text-slate-100'
+              className={`border-b border-slate-200 py-3.5 text-[1.7rem] leading-tight font-bold tracking-tight transition-[opacity,translate,color] duration-[350ms] dark:border-white/12 ${
+                activeSection === item.id
+                  ? 'text-brand-600 dark:text-brand-400'
+                  : 'text-slate-900 dark:text-slate-100'
               }`}
               style={{
                 opacity: isMenuOpen ? 1 : 0,
@@ -345,7 +346,7 @@ export function Header() {
             href={tr(profile.resume)}
             download
             onClick={() => setIsMenuOpen(false)}
-            className="text-brand-400 mt-6 inline-flex items-center gap-2 self-start text-base font-semibold transition-[opacity,translate] duration-[350ms]"
+            className="text-brand-600 dark:text-brand-400 mt-6 inline-flex items-center gap-2 self-start text-base font-semibold transition-[opacity,translate] duration-[350ms]"
             style={{
               opacity: isMenuOpen ? 1 : 0,
               translate: isMenuOpen ? '0 0' : '0 -14px',
@@ -360,8 +361,8 @@ export function Header() {
         {/* Подсказка о жесте: без неё свайп остаётся незаметной функцией.
             pointer-events-none, чтобы полоска не перехватывала касания. */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 pb-5">
-          <span className="h-1 w-10 rounded-full bg-white/30" />
-          <span className="font-mono text-[0.6rem] tracking-wider text-white/40 uppercase">
+          <span className="h-1 w-10 rounded-full bg-slate-300 dark:bg-white/30" />
+          <span className="font-mono text-[0.6rem] tracking-wider text-slate-400 uppercase dark:text-white/40">
             {t('nav.swipeHint')}
           </span>
         </div>

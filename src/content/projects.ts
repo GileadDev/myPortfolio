@@ -18,15 +18,6 @@ export type Project = {
   featured: boolean;
 };
 
-/**
- * Первые два проекта восстановлены по резюме, последние два — пустые слоты.
- *
- * Что реально смотрят на ревью портфолио:
- *  — рабочее демо (важнее любого описания);
- *  — ссылка на код с внятными коммитами и README;
- *  — какую задачу решал проект, а не только список технологий.
- * Три хорошо описанных проекта сильнее восьми брошенных.
- */
 export const projects: Project[] = [
   {
     id: 'portfolio',
@@ -40,9 +31,9 @@ export const projects: Project[] = [
       en: 'A single-page CV site with no backend. All content lives in typed files in both languages, so RU/EN switching is instant. The dark theme is applied before first paint, so there is no white flash. Reveal animations run on Intersection Observer; accessibility covers a skip link, :focus-visible, aria labels and prefers-reduced-motion support.',
     },
     tech: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'GitHub Actions'],
-    demoUrl: '', // ЗАПОЛНИТЕ после публикации на GitHub Pages
-    codeUrl: '', // ЗАПОЛНИТЕ ссылкой на репозиторий
-    image: '',
+    demoUrl: 'https://gileaddev.github.io/myPortfolio', 
+    codeUrl: 'https://github.com/GileadDev/myPortfolio', 
+    image: './projects/myPortfolio.webp',
     featured: true,
   },
   {
@@ -62,43 +53,7 @@ export const projects: Project[] = [
     tech: ['LLM / AI tools', 'Python', 'REST API', 'Git'],
     demoUrl: '',
     codeUrl: '',
-    image: '',
+    image: './projects/LLM-bot.webp',
     featured: true,
-  },
-  {
-    id: 'slot-1',
-    // ЗАМЕНИТЕ на свой фронтенд-проект. Лучше всего — тот, у которого есть живое демо.
-    title: { ru: 'Ваш проект на React', en: 'Your React project' },
-    summary: {
-      ru: 'Одно предложение: что это и для кого',
-      en: 'One sentence: what it is and who it is for',
-    },
-    description: {
-      ru: 'Опишите задачу, что сделали именно вы и что получилось в результате. Два-четыре предложения. Если есть цифры — время загрузки, количество экранов, оценка Lighthouse — приведите их: они убеждают сильнее прилагательных.',
-      en: 'Describe the task, what you personally did and what came out of it. Two to four sentences. If you have numbers — load time, number of screens, Lighthouse score — include them: they persuade better than adjectives.',
-    },
-    tech: ['React', 'TypeScript', 'CSS'],
-    demoUrl: '',
-    codeUrl: '',
-    image: '',
-    featured: false,
-  },
-  {
-    id: 'slot-2',
-    // ЗАМЕНИТЕ или удалите весь этот объект, если третьего проекта пока нет.
-    title: { ru: 'Ещё один проект', en: 'One more project' },
-    summary: {
-      ru: 'Учебный или пет-проект тоже считается',
-      en: 'An educational or pet project counts too',
-    },
-    description: {
-      ru: 'Пустых слотов лучше не оставлять: два проекта с рабочими ссылками смотрятся сильнее четырёх с описаниями и без демо. Если заполнить нечем — просто удалите этот объект из массива.',
-      en: 'Do not leave empty slots: two projects with working links look stronger than four with descriptions and no demo. If you have nothing to put here, just delete this object from the array.',
-    },
-    tech: ['JavaScript', 'HTML', 'CSS'],
-    demoUrl: '',
-    codeUrl: '',
-    image: '',
-    featured: false,
   },
 ];

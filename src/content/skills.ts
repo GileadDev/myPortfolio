@@ -7,11 +7,7 @@ export type SkillGroup = {
   items: string[];
 };
 
-/**
- * Составлено по разделам CORE SKILLS и TOOLS & TECHNOLOGY из резюме.
- * Добавляйте только то, о чём сможете говорить пятнадцать минут
- * на собеседовании: короткий правдивый список сильнее длинного.
- */
+
 export const skillGroups: SkillGroup[] = [
   {
     title: { ru: 'Frontend — ядро', en: 'Frontend core' },

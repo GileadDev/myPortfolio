@@ -11,7 +11,6 @@ export type Job = {
   /** Пустой при непустом start = «по настоящее время» */
   end: L10n;
   location: L10n;
-  /** Что вы сделали. Цифры убеждают сильнее прилагательных. */
   highlights: L10nList;
   tech: string[];
 };
@@ -24,13 +23,7 @@ export type Education = {
   certificateUrl?: string;
 };
 
-/**
- * Составлено по разделу EXPERIENCE из резюме.
- *
- * ЗАПОЛНИТЕ ДАТЫ: в резюме их не было, поэтому поля start/end пустые
- * и блок с периодом не отображается. Рекрутеры смотрят на даты
- * в первую очередь — впишите хотя бы месяц и год начала.
- */
+
 export const jobs: Job[] = [
   {
     company: { ru: 'Фриланс (Fiverr)', en: 'Freelance (Fiverr)' },
@@ -38,8 +31,8 @@ export const jobs: Job[] = [
       ru: 'Junior Engineer — голосовой и SMS-агент на LLM',
       en: 'Junior Engineer — LLM Voice & SMS Agent',
     },
-    start: { ru: '', en: '' }, // ЗАПОЛНИТЕ
-    end: { ru: '', en: '' }, // ЗАПОЛНИТЕ
+    start: { ru: '15.01.2026', en: '15.01.2026' }, 
+    end: { ru: '12.07.2026', en: '12.07.2026' }, 
     location: { ru: 'Удалённо', en: 'Remote' },
     highlights: {
       ru: [
@@ -57,24 +50,7 @@ export const jobs: Job[] = [
     },
     tech: ['LLM / AI tools', 'Python', 'REST API', 'Git'],
   },
-  {
-    company: { ru: 'Личные и учебные проекты', en: 'Personal & educational projects' },
-    position: { ru: 'Frontend-разработка', en: 'Frontend Development' },
-    start: { ru: '', en: '' }, // ЗАПОЛНИТЕ
-    end: { ru: '', en: '' }, // ЗАПОЛНИТЕ
-    location: { ru: 'Удалённо', en: 'Remote' },
-    highlights: {
-      ru: [
-        'Собирал адаптивные интерфейсы на HTML, CSS, JavaScript, React и TypeScript.',
-        'Работал с DOM и обработкой событий, асинхронным JavaScript и интеграцией с REST API.',
-      ],
-      en: [
-        'Built responsive interfaces with HTML, CSS, JavaScript, React and TypeScript.',
-        'Worked with DOM manipulation, event handling, asynchronous JavaScript and REST API integration.',
-      ],
-    },
-    tech: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
-  },
+
 ];
 
 /** Раздел EDUCATION из резюме. */
