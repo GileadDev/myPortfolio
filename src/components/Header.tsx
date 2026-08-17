@@ -184,23 +184,27 @@ export function Header() {
     .slice(0, 2)
     .toUpperCase();
 
-  // Пока панель открыта, она тёмная в любой теме — поэтому содержимое
-  // шапки на это время принудительно светлое.
-  const barControl = isMenuOpen
+  // «Режим меню» держится, пока панель открыта И пока она едет. Ориентируемся
+  // на него, а не на isMenuOpen: состояние переключается мгновенно, а панель
+  // доезжает только через 0.5с — за это время шапка успела бы моргнуть.
+  const inMenuMode = isMenuOpen || isPanelMoving;
+
+  // В режиме меню шапка окрашена в цвет панели и сливается с ней,
+  // поэтому её содержимое на это время светлое в любой теме.
+  const barControl = inMenuMode
     ? 'text-slate-300 hover:bg-white/10 hover:text-white'
     : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white';
-
-  // Фон и блюр шапки выключены не только пока меню открыто, но и всё время,
-  // пока панель движется — иначе она «обрезается» по границе шапки.
-  const showBarSurface = isScrolled && !isMenuOpen && !isPanelMoving;
 
   return (
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          showBarSurface
-            ? 'border-b border-slate-200/80 bg-slate-50/80 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/80'
-            : 'border-b border-transparent'
+          inMenuMode
+            ? // Тот же цвет, что у панели: шапка и шторка выглядят одним полотном
+              'border-b border-transparent bg-slate-950'
+            : isScrolled
+              ? 'border-b border-slate-200/80 bg-slate-50/80 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/80'
+              : 'border-b border-transparent'
         }`}
       >
       <div className="container-page flex h-16 items-center justify-between gap-4">
@@ -218,7 +222,7 @@ export function Header() {
               квадрат с инициалами, иначе имя дублировало бы первый экран. */}
           <span
             className={`truncate text-sm font-semibold text-white transition-colors md:hidden ${
-              isMenuOpen ? 'block' : 'hidden'
+              inMenuMode ? 'block' : 'hidden'
             }`}
           >
             {tr(profile.name)}
@@ -273,7 +277,7 @@ export function Header() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             className={`ml-0.5 inline-flex min-h-11 items-center gap-2.5 rounded-full border-[1.5px] px-3.5 text-[0.7rem] font-bold tracking-[0.08em] uppercase transition-colors select-none md:hidden ${
-              isMenuOpen
+              inMenuMode
                 ? 'border-slate-300 text-white hover:bg-white hover:text-slate-900'
                 : 'border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-slate-50 dark:border-slate-200 dark:text-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'
             }`}
