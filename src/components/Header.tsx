@@ -39,7 +39,11 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   /** true, пока панель едет. Нужен, чтобы не включать фон шапки раньше времени. */
   const [isPanelMoving, setIsPanelMoving] = useState(false);
+  /** true, пока палец тянет панель: на это время CSS-переход отключаем. */
+  const [isDragging, setIsDragging] = useState(false);
   const isFirstRender = useRef(true);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   const navItems = useMemo<NavItem[]>(() => {
     const items: NavItem[] = [
@@ -88,6 +92,77 @@ export function Header() {
     setIsPanelMoving(true);
     const timer = window.setTimeout(() => setIsPanelMoving(false), 520);
     return () => window.clearTimeout(timer);
+  }, [isMenuOpen]);
+
+  // Закрытие свайпом вверх. Позицию во время движения пишем прямо в стиль
+  // элемента, минуя состояние: перерисовка на каждый кадр касания заметно
+  // дёргала бы анимацию.
+  useEffect(() => {
+    const panel = panelRef.current;
+    if (!panel || !isMenuOpen) return;
+
+    let startY = 0;
+    let startedAt = 0;
+    let offset = 0;
+    let isActive = false;
+
+    // Пока список пунктов можно листать дальше, свайп вверх принадлежит
+    // ему, а не шторке — иначе меню закрывалось бы вместо прокрутки.
+    const isListAtBottom = () => {
+      const nav = navRef.current;
+      if (!nav) return true;
+      return nav.scrollHeight - nav.clientHeight - nav.scrollTop <= 1;
+    };
+
+    const onStart = (event: TouchEvent) => {
+      if (event.touches.length !== 1) return;
+      isActive = isListAtBottom();
+      startY = event.touches[0].clientY;
+      startedAt = performance.now();
+      offset = 0;
+    };
+
+    const onMove = (event: TouchEvent) => {
+      if (!isActive) return;
+      const delta = event.touches[0].clientY - startY;
+      if (delta >= 0) return; // тянут вниз — не наш жест
+      event.preventDefault();
+      offset = delta;
+      setIsDragging(true);
+      panel.style.translate = `0 ${delta}px`;
+    };
+
+    const onEnd = () => {
+      if (!isActive) return;
+      isActive = false;
+      setIsDragging(false);
+      if (offset === 0) return;
+
+      const speed = Math.abs(offset) / Math.max(performance.now() - startedAt, 1);
+      // Порог — пятая часть высоты, но не меньше 64px и не больше 90px.
+      // Нижняя граница обязательна: если clientHeight почему-то равен нулю,
+      // без неё порог обнулился бы и панель закрывалась от любого касания.
+      const threshold = Math.max(64, Math.min(90, panel.clientHeight * 0.2));
+      const pulledFarEnough = Math.abs(offset) > threshold;
+
+      if (pulledFarEnough || speed > 0.5) {
+        setIsMenuOpen(false); // React допишет translate до -105%
+      } else {
+        panel.style.translate = '0 0'; // не дотянули — возвращаем на место
+      }
+      offset = 0;
+    };
+
+    panel.addEventListener('touchstart', onStart, { passive: true });
+    panel.addEventListener('touchmove', onMove, { passive: false });
+    panel.addEventListener('touchend', onEnd);
+    panel.addEventListener('touchcancel', onEnd);
+    return () => {
+      panel.removeEventListener('touchstart', onStart);
+      panel.removeEventListener('touchmove', onMove);
+      panel.removeEventListener('touchend', onEnd);
+      panel.removeEventListener('touchcancel', onEnd);
+    };
   }, [isMenuOpen]);
 
   // Панель живёт только до md. Если экран расширился при открытом меню,
@@ -218,13 +293,18 @@ export function Header() {
           не исчезала до конца анимации. */}
       <div
         id="mobile-menu"
+        ref={panelRef}
         className="fixed inset-0 z-40 md:hidden"
         style={{
           translate: isMenuOpen ? '0 0' : '0 -105%',
           visibility: isMenuOpen ? 'visible' : 'hidden',
-          transition: isMenuOpen
-            ? 'translate .5s cubic-bezier(.7,0,.25,1), visibility 0s 0s'
-            : 'translate .5s cubic-bezier(.7,0,.25,1), visibility 0s .5s',
+          // Во время перетаскивания перехода быть не должно — иначе панель
+          // тянется за пальцем с задержкой.
+          transition: isDragging
+            ? 'none'
+            : isMenuOpen
+              ? 'translate .5s cubic-bezier(.7,0,.25,1), visibility 0s 0s'
+              : 'translate .5s cubic-bezier(.7,0,.25,1), visibility 0s .5s',
         }}
       >
         <div className="absolute inset-0 bg-slate-950" />
@@ -234,8 +314,9 @@ export function Header() {
         />
 
         <nav
+          ref={navRef}
           aria-label="mobile"
-          className="relative flex h-full flex-col overflow-y-auto px-6 pt-24 pb-10"
+          className="relative flex h-full flex-col overflow-y-auto px-6 pt-24 pb-16"
         >
           {navItems.map((item, index) => (
             <a
@@ -270,6 +351,15 @@ export function Header() {
             {t('hero.downloadCv')} →
           </a>
         </nav>
+
+        {/* Подсказка о жесте: без неё свайп остаётся незаметной функцией.
+            pointer-events-none, чтобы полоска не перехватывала касания. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 pb-5">
+          <span className="h-1 w-10 rounded-full bg-white/30" />
+          <span className="font-mono text-[0.6rem] tracking-wider text-white/40 uppercase">
+            {t('nav.swipeHint')}
+          </span>
+        </div>
       </div>
     </>
   );

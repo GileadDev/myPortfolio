@@ -13,6 +13,7 @@ export const ui = {
   'nav.close': { ru: 'Закрыть меню', en: 'Close menu' },
   'nav.menuWord': { ru: 'Меню', en: 'Menu' },
   'nav.closeWord': { ru: 'Закрыть', en: 'Close' },
+  'nav.swipeHint': { ru: 'Свайп вверх, чтобы закрыть', en: 'Swipe up to close' },
 
   'hero.available': { ru: 'Открыт к предложениям', en: 'Open to work' },
   'hero.viewProjects': { ru: 'Смотреть проекты', en: 'View projects' },
