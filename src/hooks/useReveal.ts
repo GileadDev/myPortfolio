@@ -3,8 +3,14 @@ import { useEffect, useRef, useState } from 'react';
 /**
  * Появление блока при попадании в вьюпорт.
  * Intersection Observer вместо слушателя scroll — не дёргает главный поток.
+ *
+ * threshold обязан быть 0. Доля пересечения считается от площади самого
+ * элемента, а секции здесь в разы выше экрана: «Проекты» ~2700px против
+ * ~400px вьюпорта в альбомной ориентации телефона. Любой ненулевой порог
+ * там недостижим в принципе — секция навсегда осталась бы прозрачной.
+ * Момент появления задаём через rootMargin, а не через порог.
  */
-export function useReveal<T extends HTMLElement = HTMLDivElement>(threshold = 0.15) {
+export function useReveal<T extends HTMLElement = HTMLDivElement>(threshold = 0) {
   const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -25,7 +31,9 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(threshold = 0.
           observer.disconnect(); // анимация одноразовая
         }
       },
-      { threshold, rootMargin: '0px 0px -80px 0px' },
+      // Отрицательный нижний отступ: блок проявляется, когда его верхняя
+      // кромка поднялась на 60px выше нижнего края экрана.
+      { threshold, rootMargin: '0px 0px -60px 0px' },
     );
 
     observer.observe(element);
