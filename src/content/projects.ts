@@ -33,7 +33,7 @@ export const projects: Project[] = [
     tech: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'GitHub Actions'],
     demoUrl: 'https://gileaddev.github.io/myPortfolio', 
     codeUrl: 'https://github.com/GileadDev/myPortfolio', 
-    image: '/dist/projects/myPortfolio.webp',
+    image: './projects/myPortfolio.webp',
     featured: true,
   },
   {
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     tech: ['LLM / AI tools', 'Python', 'REST API', 'Git'],
     demoUrl: '',
     codeUrl: '',
-    image: '/dist/projects/LLM-bot.webp',
+    image: './projects/LLM-bot.webp',
     featured: true,
   },
 ];
