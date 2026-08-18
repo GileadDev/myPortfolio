@@ -8,7 +8,6 @@ export function Experience() {
 
   return (
     <Section id="experience" title={t('experience.title')} subtitle={t('experience.subtitle')}>
-      {/* Таймлайн: вертикальная линия слева, точка у каждой записи */}
       <ol className="relative space-y-10 border-l border-slate-200 pl-8 dark:border-slate-800">
         {jobs.map((job, index) => (
           <li key={`${job.company.en}-${index}`} className="relative">
@@ -17,7 +16,6 @@ export function Experience() {
               className="border-brand-500 absolute top-1.5 -left-[2.28rem] h-3.5 w-3.5 rounded-full border-2 bg-slate-50 dark:bg-slate-950"
             />
 
-            {/* Даты может не быть — тогда строку не рисуем вовсе */}
             {tr(job.start) && (
               <p className="font-mono text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-500">
                 {tr(job.start)} — {tr(job.end) || t('experience.present')}

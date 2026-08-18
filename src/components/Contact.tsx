@@ -35,8 +35,6 @@ function ContactLink({
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Буфер обмена может быть недоступен (не https / нет разрешения) —
-      // ссылка рядом всё равно работает, поэтому просто ничего не делаем
     }
   };
 
@@ -46,8 +44,6 @@ function ContactLink({
         href={href}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel="noreferrer noopener"
-        /* min-w-0 обязателен: у flex-элемента min-width по умолчанию auto,
-           поэтому без него длинная ссылка не обрезается, а растягивает карточку */
         className="hover:border-brand-500/50 flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-slate-200 p-3 transition-colors dark:border-slate-800"
       >
         <span className="bg-brand-500/10 text-brand-600 dark:text-brand-400 grid h-9 w-9 shrink-0 place-items-center rounded-lg">
@@ -161,9 +157,6 @@ export function Contact() {
   return (
     <Section id="contact" title={t('contact.title')} subtitle={t('contact.subtitle')}>
       <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
-        {/* min-w-0 на обеих колонках сетки: иначе textarea со своей
-            внутренней шириной не даёт секции сжаться уже ~390px
-            и на телефоне появляется горизонтальная прокрутка */}
         <form onSubmit={handleSubmit} noValidate className="card min-w-0 space-y-5 p-5 sm:p-8">
           <div>
             <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -233,7 +226,6 @@ export function Contact() {
             {status === 'sending' ? t('contact.sending') : t('contact.send')}
           </button>
 
-          {/* Живая область: скринридер объявит результат отправки */}
           <div aria-live="polite">
             {!isConfigured && (
               <p className="rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-700 dark:text-amber-400">

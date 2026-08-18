@@ -1,11 +1,5 @@
 import type { L10n, L10nList } from '../i18n/LanguageProvider';
 
-/**
- * ╔═════════════════════════╗
- * ║  ГЛАВНЫЙ ФАЙЛ С ДАННЫМИ.║
- * ╚═════════════════════════╝
- */
-
 export const profile = {
   name: {
     ru: 'Сергей Малискевич',
@@ -49,24 +43,18 @@ export const profile = {
   phone: '+34 644 705 898',
   telegram: 'https://t.me/Gileadq',
 
- // Пока строка пустая - иконка просто не показывается.
   github: 'https://github.com/GileadDev',
-  linkedin: 'https://www.linkedin.com/in/serhii-malyskevych-135a8737a/', 
+  linkedin: 'https://www.linkedin.com/in/serhii-malyskevych-135a8737a/',
   hh: '',
 
-  // Резюме
   resume: {
     ru: './Serhii_Malyskevych_CV_RU.pdf',
     en: './Serhii_Malyskevych_CV_ENG.pdf',
   } satisfies L10n,
 
-  /** Форма обратной связи работает через Formspree (без своего бэкенда):*/
-   
   formspreeId: 'xwlenbvk',
 
-  /** Ссылка на репозиторий самого сайта */
   siteRepo: 'https://github.com/GileadDev/myPortfolio',
 
-  /** Бейдж «Открыт к предложениям» в первом экране. */
   openToWork: true,
 };

@@ -28,7 +28,6 @@ function ProjectCard({ project }: { project: Project }) {
             className="aspect-16/10 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          // Заглушка, пока нет скриншота: инициалы проекта на градиенте
           <div className="from-brand-500/20 to-brand-700/20 grid aspect-16/10 h-full w-full place-items-center bg-gradient-to-br">
             <span className="text-brand-600/40 dark:text-brand-400/40 font-mono text-5xl font-bold">
               {tr(project.title).slice(0, 2).toUpperCase()}
@@ -94,7 +93,6 @@ export function Projects() {
   const { t } = useLanguage();
   const [showAll, setShowAll] = useState(false);
 
-  // Ключевые проекты идут первыми — их видят даже те, кто не долистает
   const sorted = useMemo(
     () => [...projects].sort((a, b) => Number(b.featured) - Number(a.featured)),
     [],

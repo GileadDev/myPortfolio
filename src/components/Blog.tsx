@@ -4,7 +4,6 @@ import { posts, type Post } from '../content/posts';
 import { Section } from './Section';
 import { ChevronDownIcon } from './Icons';
 
-/** Примерная оценка времени чтения: 180 слов в минуту. */
 function readingTime(paragraphs: string[]) {
   const words = paragraphs.join(' ').trim().split(/\s+/).length;
   return Math.max(1, Math.round(words / 180));
@@ -72,7 +71,6 @@ function PostCard({ post }: { post: Post }) {
 export function Blog() {
   const { t } = useLanguage();
 
-  // Свежие записи сверху
   const sorted = useMemo(
     () => [...posts].sort((a, b) => b.date.localeCompare(a.date)),
     [],

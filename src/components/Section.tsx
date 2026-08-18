@@ -9,7 +9,6 @@ type SectionProps = {
   className?: string;
 };
 
-/** Обёртка секции: единый заголовок, отступы и появление при скролле. */
 export function Section({ id, title, subtitle, children, className = '' }: SectionProps) {
   const { ref, isVisible } = useReveal<HTMLElement>();
 

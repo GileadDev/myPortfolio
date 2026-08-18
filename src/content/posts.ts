@@ -3,11 +3,8 @@ import type { L10n, L10nList } from '../i18n/LanguageProvider';
 export type Post = {
   id: string;
   title: L10n;
-  /** Дата в формате ISO: '2026-03-14'. По ней идёт сортировка. */
   date: string;
-  /** Анонс на карточке — 1–2 предложения */
   excerpt: L10n;
-  /** Текст статьи: массив абзацев. Разворачивается прямо на странице. */
   body: L10nList;
   tags: string[];
 };

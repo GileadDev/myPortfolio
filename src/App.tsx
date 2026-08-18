@@ -15,7 +15,6 @@ export default function App() {
 
   return (
     <MobileMenuProvider>
-      {/* Первое, что получает фокус по Tab, — ссылка «сразу к содержимому» */}
       <a
         href="#about"
         className="bg-brand-600 sr-only rounded-lg px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60]"

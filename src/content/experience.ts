@@ -3,12 +3,7 @@ import type { L10n, L10nList } from '../i18n/LanguageProvider';
 export type Job = {
   company: L10n;
   position: L10n;
-  /**
-   * Формат: 'Март 2024' / 'Mar 2024'.
-   * Если start пустой — строка с датами не выводится вообще.
-   */
   start: L10n;
-  /** Пустой при непустом start = «по настоящее время» */
   end: L10n;
   location: L10n;
   highlights: L10nList;
@@ -19,10 +14,8 @@ export type Education = {
   institution: L10n;
   title: L10n;
   period: L10n;
-  /** Ссылка на сертификат, если есть */
   certificateUrl?: string;
 };
-
 
 export const jobs: Job[] = [
   {
@@ -31,8 +24,8 @@ export const jobs: Job[] = [
       ru: 'Junior Engineer — голосовой и SMS-агент на LLM',
       en: 'Junior Engineer — LLM Voice & SMS Agent',
     },
-    start: { ru: '15.01.2026', en: '15.01.2026' }, 
-    end: { ru: '12.07.2026', en: '12.07.2026' }, 
+    start: { ru: '15.01.2026', en: '15.01.2026' },
+    end: { ru: '12.07.2026', en: '12.07.2026' },
     location: { ru: 'Удалённо', en: 'Remote' },
     highlights: {
       ru: [
@@ -53,7 +46,6 @@ export const jobs: Job[] = [
 
 ];
 
-/** Раздел EDUCATION из резюме. */
 export const education: Education[] = [
   {
     institution: {

@@ -3,18 +3,12 @@ import type { L10n } from '../i18n/LanguageProvider';
 export type Project = {
   id: string;
   title: L10n;
-  /** Одно предложение: что это и для кого */
   summary: L10n;
-  /** 2–4 предложения: какую задачу решали и что сделали именно вы */
   description: L10n;
   tech: string[];
-  /** Ссылка на живое демо. Пустая строка — кнопка не показывается. */
   demoUrl: string;
-  /** Ссылка на репозиторий. Пустая строка — кнопка не показывается. */
   codeUrl: string;
-  /** Скриншот 16:10 в public/projects/. Пустая строка — рисуется градиентная заглушка. */
   image: string;
-  /** Ключевые проекты показываются первыми и крупнее */
   featured: boolean;
 };
 
@@ -31,8 +25,8 @@ export const projects: Project[] = [
       en: 'A single-page CV site with no backend. All content lives in typed files in both languages, so RU/EN switching is instant. The dark theme is applied before first paint, so there is no white flash. Reveal animations run on Intersection Observer; accessibility covers a skip link, :focus-visible, aria labels and prefers-reduced-motion support.',
     },
     tech: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'GitHub Actions'],
-    demoUrl: 'https://gileaddev.github.io/myPortfolio', 
-    codeUrl: 'https://github.com/GileadDev/myPortfolio', 
+    demoUrl: 'https://gileaddev.github.io/myPortfolio',
+    codeUrl: 'https://github.com/GileadDev/myPortfolio',
     image: './projects/myPortfolio.webp',
     featured: true,
   },

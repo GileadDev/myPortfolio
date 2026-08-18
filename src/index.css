@@ -1,14 +1,11 @@
 @import 'tailwindcss';
 
-/* Tailwind v4 по умолчанию берёт тёмную тему из prefers-color-scheme.
-   Нам нужен ручной переключатель — переопределяем вариант на класс. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
 
-  /* Фирменный акцент. Меняете эти четыре значения — меняется весь сайт. */
   --color-brand-400: oklch(0.78 0.13 195);
   --color-brand-500: oklch(0.7 0.15 200);
   --color-brand-600: oklch(0.6 0.15 205);
@@ -50,12 +47,8 @@
 
   html {
     scroll-behavior: smooth;
-    /* отступ, чтобы липкая шапка не накрывала заголовок секции при переходе по якорю */
     scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
-    /* Место под полосу прокрутки резервируется всегда. Иначе при открытии
-       меню (body: overflow hidden) полоса пропадает, страница и фиксированная
-       шапка прыгают на её ширину — это видно как светлая полоска у края. */
     scrollbar-gutter: stable;
   }
 
@@ -67,7 +60,6 @@
     @apply bg-brand-500/30;
   }
 
-  /* Аккуратный фокус только для клавиатуры — доступность без визуального шума */
   :focus-visible {
     @apply outline-brand-500 rounded-sm outline-2 outline-offset-2;
   }
@@ -89,7 +81,6 @@
     @apply bg-slate-400 dark:bg-slate-600;
   }
 
-  /* Уважаем системную настройку «уменьшить движение» */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -109,7 +100,6 @@
   @apply mx-auto w-full max-w-5xl px-5 sm:px-8;
 }
 
-/* Карточка — базовая поверхность, повторяется во всех секциях */
 @utility card {
   @apply rounded-2xl border border-slate-200 bg-white/70 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60;
 }

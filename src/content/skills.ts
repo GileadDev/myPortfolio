@@ -2,11 +2,9 @@ import type { L10n } from '../i18n/LanguageProvider';
 
 export type SkillGroup = {
   title: L10n;
-  /** Иконка группы — эмодзи или короткий символ */
   icon: string;
   items: string[];
 };
-
 
 export const skillGroups: SkillGroup[] = [
   {

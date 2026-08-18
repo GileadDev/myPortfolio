@@ -10,7 +10,6 @@ import { DocumentIcon, MoonIcon, SunIcon } from './Icons';
 
 type NavItem = { id: string; labelKey: UiKey };
 
-/** Три полоски, складывающиеся в крестик при открытии. */
 function BurgerIcon({ isOpen }: { isOpen: boolean }) {
   const bar = 'absolute left-0 h-0.5 w-[18px] rounded-sm bg-current';
   const motion = 'transition-[translate,rotate,opacity] duration-300';
@@ -38,9 +37,7 @@ export function Header() {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const { isMenuOpen, setIsMenuOpen } = useMobileMenu();
-  /** true, пока панель едет. Нужен, чтобы не включать фон шапки раньше времени. */
   const [isPanelMoving, setIsPanelMoving] = useState(false);
-  /** true, пока палец тянет панель: на это время CSS-переход отключаем. */
   const [isDragging, setIsDragging] = useState(false);
   const isFirstRender = useRef(true);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -68,7 +65,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Открытое меню: блокируем прокрутку фона и закрываем по Escape
   useEffect(() => {
     if (!isMenuOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -82,9 +78,6 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
-  // При закрытии isMenuOpen сбрасывается сразу, а панель едет ещё 0.5с.
-  // Без этой задержки шапка мгновенно возвращает полупрозрачный фон
-  // с backdrop-blur и «режет» уезжающую панель по своей нижней границе.
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -95,9 +88,6 @@ export function Header() {
     return () => window.clearTimeout(timer);
   }, [isMenuOpen]);
 
-  // Закрытие свайпом вверх. Позицию во время движения пишем прямо в стиль
-  // элемента, минуя состояние: перерисовка на каждый кадр касания заметно
-  // дёргала бы анимацию.
   useEffect(() => {
     const panel = panelRef.current;
     if (!panel || !isMenuOpen) return;
@@ -107,8 +97,6 @@ export function Header() {
     let offset = 0;
     let isActive = false;
 
-    // Пока список пунктов можно листать дальше, свайп вверх принадлежит
-    // ему, а не шторке — иначе меню закрывалось бы вместо прокрутки.
     const isListAtBottom = () => {
       const nav = navRef.current;
       if (!nav) return true;
@@ -126,7 +114,7 @@ export function Header() {
     const onMove = (event: TouchEvent) => {
       if (!isActive) return;
       const delta = event.touches[0].clientY - startY;
-      if (delta >= 0) return; // тянут вниз — не наш жест
+      if (delta >= 0) return;
       event.preventDefault();
       offset = delta;
       setIsDragging(true);
@@ -140,16 +128,13 @@ export function Header() {
       if (offset === 0) return;
 
       const speed = Math.abs(offset) / Math.max(performance.now() - startedAt, 1);
-      // Порог — пятая часть высоты, но не меньше 64px и не больше 90px.
-      // Нижняя граница обязательна: если clientHeight почему-то равен нулю,
-      // без неё порог обнулился бы и панель закрывалась от любого касания.
       const threshold = Math.max(64, Math.min(90, panel.clientHeight * 0.2));
       const pulledFarEnough = Math.abs(offset) > threshold;
 
       if (pulledFarEnough || speed > 0.5) {
-        setIsMenuOpen(false); // React допишет translate до -105%
+        setIsMenuOpen(false);
       } else {
-        panel.style.translate = '0 0'; // не дотянули — возвращаем на место
+        panel.style.translate = '0 0';
       }
       offset = 0;
     };
@@ -166,9 +151,6 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
-  // Панель живёт только до md. Если экран расширился при открытом меню,
-  // она пропадает — состояние надо сбросить, иначе прокрутка останется
-  // заблокированной, а кнопка «Закрыть» уедет из вида.
   useEffect(() => {
     const media = window.matchMedia('(min-width: 768px)');
     const onChange = (event: MediaQueryListEvent) => {
@@ -185,13 +167,8 @@ export function Header() {
     .slice(0, 2)
     .toUpperCase();
 
-  // «Режим меню» держится, пока панель открыта И пока она едет. Ориентируемся
-  // на него, а не на isMenuOpen: состояние переключается мгновенно, а панель
-  // доезжает только через 0.5с — за это время шапка успела бы моргнуть.
   const inMenuMode = isMenuOpen || isPanelMoving;
 
-  // Панель следует за темой, поэтому содержимое шапки красится обычными
-  // цветами в любом состоянии — подменять их на светлые больше не нужно.
   const barControl =
     'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white';
 
@@ -200,8 +177,7 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           inMenuMode
-            ? // Тот же цвет, что у панели: шапка и шторка выглядят одним полотном.
-              // Без прозрачности — иначе сквозь шапку просвечивала бы страница.
+            ?
               'border-b border-transparent bg-slate-50 dark:bg-slate-950'
             : isScrolled
               ? 'border-b border-slate-200/80 bg-slate-50/80 backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-950/80'
@@ -218,9 +194,6 @@ export function Header() {
           <span className="from-brand-500 to-brand-700 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br font-mono text-sm font-bold text-white shadow-sm transition-transform group-hover:scale-105">
             {initials}
           </span>
-          {/* Имя показывается только когда открыта мобильная панель — там оно
-              служит её заголовком. В остальное время в шапке лежит один
-              квадрат с инициалами, иначе имя дублировало бы первый экран. */}
           <span
             className={`truncate text-sm font-semibold text-slate-900 transition-colors md:hidden dark:text-white ${
               inMenuMode ? 'block' : 'hidden'
@@ -286,12 +259,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Панель — сосед шапки, а не её потомок: внутри <header> она попадала
-          в его контекст наложения и перекрывалась фоном с backdrop-blur.
-          Своим z-40 она лежит под строкой шапки (z-50), но над контентом,
-          поэтому имя остаётся наверху, а ссылки идут под ним.
-          visibility переключается с задержкой, чтобы уезжающая панель
-          не исчезала до конца анимации. */}
       <div
         id="mobile-menu"
         ref={panelRef}
@@ -299,8 +266,6 @@ export function Header() {
         style={{
           translate: isMenuOpen ? '0 0' : '0 -105%',
           visibility: isMenuOpen ? 'visible' : 'hidden',
-          // Во время перетаскивания перехода быть не должно — иначе панель
-          // тянется за пальцем с задержкой.
           transition: isDragging
             ? 'none'
             : isMenuOpen
@@ -308,9 +273,6 @@ export function Header() {
               : 'translate .5s cubic-bezier(.7,0,.25,1), visibility 0s .5s',
         }}
       >
-        {/* Панель следует за темой: в светлой она светлая, в тёмной — тёмная.
-            Цвета совпадают с фоном страницы, поэтому шторка читается как
-            её продолжение, а не как чужеродный слой. */}
         <div className="absolute inset-0 bg-slate-50 dark:bg-slate-950" />
         <div
           aria-hidden="true"
@@ -358,8 +320,6 @@ export function Header() {
           </a>
         </nav>
 
-        {/* Подсказка о жесте: без неё свайп остаётся незаметной функцией.
-            pointer-events-none, чтобы полоска не перехватывала касания. */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-2 pb-5">
           <span className="h-1 w-10 rounded-full bg-slate-300 dark:bg-white/30" />
           <span className="font-mono text-[0.6rem] tracking-wider text-slate-400 uppercase dark:text-white/40">

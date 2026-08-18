@@ -13,13 +13,11 @@ import {
 export function Hero() {
   const { t, tr } = useLanguage();
 
-  // Подсказка нужна только тем, кто ещё не тронул страницу. Как только
-  // человек начал листать, она свою работу сделала.
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setHasScrolled(window.scrollY > 40);
-    onScroll(); // страница могла открыться уже прокрученной
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -28,8 +26,6 @@ export function Hero() {
     { key: 'github', href: profile.github, label: 'GitHub', Icon: GitHubIcon },
     { key: 'linkedin', href: profile.linkedin, label: 'LinkedIn', Icon: LinkedInIcon },
     { key: 'telegram', href: profile.telegram, label: 'Telegram', Icon: TelegramIcon },
-    // Конверт ведёт не в почтовый клиент, а к секции контактов: там и форма,
-    // и сам адрес с кнопкой копирования.
     {
       key: 'email',
       href: profile.email ? '#contact' : '',
@@ -41,11 +37,8 @@ export function Hero() {
   return (
     <section
       id="top"
-      /* На телефоне высота чуть меньше экрана: край следующей секции
-         выглядывает из-под сгиба и подсказывает, что сайт продолжается. */
       className="relative flex min-h-[88svh] items-center overflow-hidden pt-24 pb-16 sm:min-h-svh sm:pt-16 sm:pb-20"
     >
-      {/* Декоративный фон: сетка + два размытых пятна акцентного цвета */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-slate-200)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-slate-200)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,black,transparent)] dark:bg-[linear-gradient(to_right,var(--color-slate-800)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-slate-800)_1px,transparent_1px)]" />
         <div className="bg-brand-500/20 animate-float absolute -top-24 -left-24 h-64 w-64 rounded-full blur-3xl sm:h-96 sm:w-96" />
@@ -84,8 +77,6 @@ export function Hero() {
           {tr(profile.tagline)}
         </p>
 
-        {/* На узком экране кнопки занимают всю ширину — так их проще нажать
-            и не остаётся рваного правого края. */}
         <div
           className="animate-fade-up mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center"
           style={{ animationDelay: '320ms' }}
@@ -109,8 +100,6 @@ export function Hero() {
           {socials.length > 0 && (
             <div className="mt-1 flex items-center gap-1 sm:mt-0 sm:ml-1">
               {socials.map(({ key, href, label, Icon }) => {
-                // В новой вкладке открываем только внешние адреса.
-                // Якорь на секцию должен прокручивать текущую страницу.
                 const isExternal = href.startsWith('http');
                 return (
                 <a
@@ -131,8 +120,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Подсказка о прокрутке нужна прежде всего на телефоне, где первый
-          экран легко принять за весь сайт */}
       <a
         href="#about"
         aria-label={t('hero.scroll')}
