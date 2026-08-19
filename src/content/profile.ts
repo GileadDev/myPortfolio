@@ -20,12 +20,12 @@ export const profile = {
     ru: [
       'Full stack разработчик с равным вниманием к фронтенду на React/TypeScript и бэкенду на Node.js/Express, Java (Spring) и SQL. Проектирую REST API, моделирую данные в PostgreSQL и контейнеризирую сервисы с Docker.',
       'На клиентской стороне делаю адаптивные и доступные интерфейсы: семантическая вёрстка, работа с DOM и событиями, асинхронный JavaScript.',
-      'Есть опыт командной работы через Git и с AI-инструментами разработки — читаю, оцениваю и дорабатываю сгенерированный код, понимая логику реализации. Живу в Севилье, открыт к удалённой работе.',
+      'Есть опыт командной работы через Git. Живу в Севилье, открыт к удалённой работе.',
     ],
     en: [
       'Full stack developer with a balanced foundation across the React/TypeScript front end and Node.js/Express, Java (Spring) and SQL on the back end. I design REST APIs, model data in PostgreSQL and containerize services with Docker.',
       'On the client side I build responsive, accessible interfaces: semantic markup, DOM and event handling, asynchronous JavaScript.',
-      'I have experience with Git-based team workflows and AI-assisted development — I read, evaluate and adapt generated code with a clear grasp of the underlying implementation. Based in Seville, open to remote work.',
+      'I have experience with Git-based team workflows. Based in Seville, open to remote work.',
     ],
   } satisfies L10nList,
 
