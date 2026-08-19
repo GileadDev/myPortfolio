@@ -7,31 +7,31 @@ export const profile = {
   } satisfies L10n,
 
   role: {
-    ru: 'Junior Frontend-разработчик',
-    en: 'Junior Frontend Developer',
+    ru: 'Full Stack разработчик (React / Node)',
+    en: 'Full Stack Developer (React / Node)',
   } satisfies L10n,
 
   tagline: {
-    ru: 'Собираю адаптивные интерфейсы на React и TypeScript. Работаю с REST API, Git',
-    en: 'I build responsive interfaces with React and TypeScript. I work with REST APIs, Git',
+    ru: 'Делаю веб-приложения целиком: интерфейсы на React и TypeScript, API на Node.js и Express, данные в PostgreSQL, сервисы в Docker.',
+    en: 'I build web applications end to end: React and TypeScript interfaces, Node.js and Express APIs, PostgreSQL data, services in Docker.',
   } satisfies L10n,
 
   about: {
     ru: [
-      'Junior Frontend-разработчик с базой в JavaScript, TypeScript и React. Делаю адаптивные интерфейсы: семантическая вёрстка на HTML и CSS, работа с DOM и событиями, асинхронный JavaScript, интеграция с REST API.',
-      'На фрилансе участвовал в разработке голосового и SMS-агента на LLM — диалоговая логика, распознавание намерений, работа с контекстом и эскалация на живого оператора.',
-      'Окончил Одесский политехнический национальный университет по направлению «Компьютерные науки и программная инженерия». Сейчас живу в Севилье и ищу удалённую работу в команде, где есть код-ревью и наставничество.',
+      'Full stack разработчик с равным вниманием к фронтенду на React/TypeScript и бэкенду на Node.js/Express, Java (Spring) и SQL. Проектирую REST API, моделирую данные в PostgreSQL и контейнеризирую сервисы с Docker.',
+      'На клиентской стороне делаю адаптивные и доступные интерфейсы: семантическая вёрстка, работа с DOM и событиями, асинхронный JavaScript.',
+      'Есть опыт командной работы через Git и с AI-инструментами разработки — читаю, оцениваю и дорабатываю сгенерированный код, понимая логику реализации. Живу в Севилье, открыт к удалённой работе.',
     ],
     en: [
-      'Junior Frontend Developer with a solid foundation in JavaScript, TypeScript and React. I build responsive interfaces: semantic HTML and CSS, DOM and event handling, asynchronous JavaScript, REST API integration.',
-      'On freelance work I helped build an LLM-based voice and SMS agent — dialogue logic, intent recognition, context handling and escalation to a live operator.',
-      'I graduated from Odesa Polytechnic National University in Computer Science and Software Engineering. I am based in Seville and looking for remote work on a team with code review and mentorship.',
+      'Full stack developer with a balanced foundation across the React/TypeScript front end and Node.js/Express, Java (Spring) and SQL on the back end. I design REST APIs, model data in PostgreSQL and containerize services with Docker.',
+      'On the client side I build responsive, accessible interfaces: semantic markup, DOM and event handling, asynchronous JavaScript.',
+      'I have experience with Git-based team workflows and AI-assisted development — I read, evaluate and adapt generated code with a clear grasp of the underlying implementation. Based in Seville, open to remote work.',
     ],
   } satisfies L10nList,
 
   facts: {
     location: { ru: 'Севилья, Испания', en: 'Seville, Spain' } satisfies L10n,
-    level: { ru: 'Junior Frontend', en: 'Junior Frontend' } satisfies L10n,
+    level: { ru: 'Full Stack (React / Node)', en: 'Full Stack (React / Node)' } satisfies L10n,
     employment: { ru: 'Удалённая работа', en: 'Open to remote work' } satisfies L10n,
     languages: {
       ru: 'Украинский — родной, English — B1, Español — A2',

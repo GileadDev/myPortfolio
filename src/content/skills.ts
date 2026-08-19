@@ -8,43 +8,33 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: { ru: 'Frontend — ядро', en: 'Frontend core' },
+    title: { ru: 'Frontend', en: 'Frontend' },
     icon: '{ }',
-    items: ['JavaScript', 'TypeScript', 'React', 'HTML5', 'CSS3'],
+    items: ['JavaScript', 'TypeScript', 'React', 'HTML5', 'CSS3', 'Responsive Design'],
   },
   {
-    title: { ru: 'Вёрстка и браузер', en: 'Layout & browser' },
-    icon: '◑',
-    items: [
-      'Responsive Web Design',
-      'DOM & Event Handling',
-      'Async JavaScript',
-      'REST API',
-      'Flexbox / Grid',
-    ],
-  },
-  {
-    title: { ru: 'Инструменты разработки', en: 'Development tools' },
-    icon: '⚙',
-    items: ['Git / GitHub', 'Docker', 'Jira / Confluence', 'SonarQube'],
-  },
-  {
-    title: { ru: 'AI в разработке', en: 'AI-assisted development' },
-    icon: '✦',
-    items: [
-      'AI & LLM tools',
-      'Разбор сгенерированного кода',
-      'Отладка и доработка логики',
-    ],
+    title: { ru: 'Backend', en: 'Backend' },
+    icon: '⇄',
+    items: ['Node.js', 'Express', 'REST API', 'Java (Spring)', 'Python'],
   },
   {
     title: { ru: 'Базы данных', en: 'Databases' },
     icon: '▤',
-    items: ['SQL', 'PostgreSQL', 'SQLite'],
+    items: ['PostgreSQL', 'SQL', 'SQLite'],
   },
   {
-    title: { ru: 'Дополнительно', en: 'Also' },
-    icon: '＋',
-    items: ['Python', 'Java fundamentals', 'ООП', 'Алгоритмы и структуры данных'],
+    title: { ru: 'Инфраструктура', en: 'Infrastructure' },
+    icon: '⚙',
+    items: ['Docker', 'Git / GitHub', 'GitHub Actions'],
+  },
+  {
+    title: { ru: 'AI в разработке', en: 'AI-assisted development' },
+    icon: '✦',
+    items: ['AI & LLM tools', 'Code review', 'Debugging'],
+  },
+  {
+    title: { ru: 'Процессы и качество', en: 'Process & quality' },
+    icon: '✓',
+    items: ['Jira / Confluence', 'SonarQube', 'Git workflow'],
   },
 ];
