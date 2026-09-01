@@ -19,10 +19,35 @@ export type Education = {
 
 export const jobs: Job[] = [
   {
+    company: { ru: 'Собственная разработка', en: 'Own R&D' },
+    position: {
+      ru: 'Разработчик AI-ассистента для разбора техники',
+      en: 'Developer — AI assistant for technique analysis',
+    },
+    start: { ru: '', en: '' },
+    end: { ru: '', en: '' },
+    location: { ru: 'Удалённо', en: 'Remote' },
+    highlights: {
+      ru: [
+        'Разработал AI-ассистента, который разбирает прыжок по видеозаписи: покадровая скелетная разметка спортсмена, измерение оборотов в воздухе и определение типа прыжка.',
+        'Реализовал объяснимый вывод: каждое заключение сопровождается цепочкой признаков, уровнем уверенности и указанием кадров, на которых оно построено.',
+        'Заложил корректную обработку неопределённости: когда ракурс съёмки физически не позволяет различить Lutz и Flip по ребру конька, ассистент отвечает «не определяется» вместо догадки.',
+        'Логика реализована и проверена на демоверсии в полном объёме; внедрение в продукт не проводилось.',
+      ],
+      en: [
+        'Built an AI assistant that breaks down a jump from video: frame-by-frame skeleton tracking of the athlete, measurement of revolutions in the air and identification of the jump type.',
+        'Implemented explainable output: every conclusion carries the chain of cues behind it, a confidence level and the frames it was derived from.',
+        'Handled uncertainty properly: when the camera angle physically cannot separate a Lutz from a Flip by the blade edge, the assistant answers “not determinable” instead of guessing.',
+        'The logic was implemented and verified in full on the demo version; rollout into a product was not carried out.',
+      ],
+    },
+    tech: ['Python', 'Computer Vision', 'Pose Estimation', 'Video Analysis'],
+  },
+  {
     company: { ru: 'Фриланс (Fiverr)', en: 'Freelance (Fiverr)' },
     position: {
-      ru: 'Junior-инженер — голосовой и SMS-агент на LLM',
-      en: 'Junior Engineer — LLM Voice & SMS Agent',
+      ru: 'Инженер-разработчик — голосовой и SMS-агент на LLM',
+      en: 'Engineer — LLM Voice & SMS Agent',
     },
     start: { ru: '15.01.2026', en: '15.01.2026' },
     end: { ru: '12.07.2026', en: '12.07.2026' },
@@ -39,7 +64,7 @@ export const jobs: Job[] = [
         'Collaborated with a distributed technical team using Git; reviewed and adjusted AI-generated backend logic for correctness and maintainability.',
       ],
     },
-    tech: ['LLM / AI tools', 'REST API', 'Git'],
+    tech: ['Python', 'LLM / AI tools', 'REST API', 'Git'],
   },
   {
     company: { ru: 'Самостоятельно', en: 'Self-directed' },
@@ -62,7 +87,7 @@ export const jobs: Job[] = [
         'Containerized services with Docker and used SQL/SQLite for local data persistence during development.',
       ],
     },
-    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
+    tech: ['Python', 'React', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
   },
 ];
 

@@ -7,31 +7,34 @@ export const profile = {
   } satisfies L10n,
 
   role: {
-    ru: 'Full Stack разработчик (React / Node)',
-    en: 'Full Stack Developer (React / Node)',
+    ru: 'Full Stack разработчик (Python / JavaScript)',
+    en: 'Full Stack Developer (Python / JavaScript)',
   } satisfies L10n,
 
   tagline: {
-    ru: 'Делаю веб-приложения целиком: интерфейсы на React и TypeScript, API на Node.js и Express, данные в PostgreSQL, сервисы в Docker.',
-    en: 'I build web applications end to end: React and TypeScript interfaces, Node.js and Express APIs, PostgreSQL data, services in Docker.',
+    ru: 'Пишу код, который автоматизирует рутину: парсеры, боты, интеграции с API и веб-сервисы на Python и JavaScript.',
+    en: 'I write code that automates the routine: scrapers, bots, API integrations and web services in Python and JavaScript.',
   } satisfies L10n,
 
   about: {
     ru: [
-      'Full stack разработчик с равным вниманием к фронтенду на React/TypeScript и бэкенду на Node.js/Express, Java (Spring) и SQL. Проектирую REST API, моделирую данные в PostgreSQL и контейнеризирую сервисы с Docker.',
-      'На клиентской стороне делаю адаптивные и доступные интерфейсы: семантическая вёрстка, работа с DOM и событиями, асинхронный JavaScript.',
-      'Есть опыт командной работы через Git. Живу в Севилье, открыт к удалённой работе.',
+      'Full stack разработчик: Python на бэкенде и в автоматизации, React и TypeScript на фронтенде. Проектирую REST API, моделирую данные в PostgreSQL и контейнеризирую сервисы в Docker.',
+      'Автоматизирую то, что люди делают руками: парсеры для сбора и обработки данных, боты, интеграции с внешними сервисами. Разрабатывал голосового и SMS-агента на LLM — серверную логику диалогов, распознавание намерений и эскалацию на живого оператора.',
+      'Работаю в команде через Git, читаю и дорабатываю чужой и сгенерированный код, понимая логику реализации. Живу в Севилье, работаю удалённо.',
     ],
     en: [
-      'Full stack developer with a balanced foundation across the React/TypeScript front end and Node.js/Express, Java (Spring) and SQL on the back end. I design REST APIs, model data in PostgreSQL and containerize services with Docker.',
-      'On the client side I build responsive, accessible interfaces: semantic markup, DOM and event handling, asynchronous JavaScript.',
-      'I have experience with Git-based team workflows. Based in Seville, open to remote work.',
+      'Full stack developer: Python on the back end and in automation, React and TypeScript on the front end. I design REST APIs, model data in PostgreSQL and containerize services with Docker.',
+      'I automate what people do by hand: scrapers for collecting and processing data, bots, integrations with external services. I built an LLM-based voice and SMS agent — backend dialogue logic, intent recognition and escalation to a live operator.',
+      'I work in a team through Git and read and adapt both third-party and generated code with a clear grasp of the implementation. Based in Seville, working remotely.',
     ],
   } satisfies L10nList,
 
   facts: {
     location: { ru: 'Севилья, Испания', en: 'Seville, Spain' } satisfies L10n,
-    level: { ru: 'Full Stack (React / Node)', en: 'Full Stack (React / Node)' } satisfies L10n,
+    level: {
+      ru: 'Full Stack — Python / JavaScript',
+      en: 'Full Stack — Python / JavaScript',
+    } satisfies L10n,
     employment: { ru: 'Удалённая работа', en: 'Open to remote work' } satisfies L10n,
     languages: {
       ru: 'Украинский — родной, English — B1, Español — A2',

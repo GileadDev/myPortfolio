@@ -29,10 +29,10 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 const STORAGE_KEY = 'locale';
 
 function getInitialLocale(): Locale {
-  if (typeof window === 'undefined') return 'ru';
+  if (typeof window === 'undefined') return 'en';
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === 'ru' || stored === 'en') return stored;
-  return navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en';
+  return 'en';
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {

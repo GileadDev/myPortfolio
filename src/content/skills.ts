@@ -8,33 +8,33 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
+    title: { ru: 'Python', en: 'Python' },
+    icon: '🐍',
+    items: ['Python', 'ООП', 'Django', 'Requests', 'asyncio'],
+  },
+  {
+    title: { ru: 'Парсинг данных', en: 'Web scraping' },
+    icon: '⛏',
+    items: ['Selenium', 'Playwright', 'BeautifulSoup', 'Scrapy'],
+  },
+  {
+    title: { ru: 'Боты и интеграции', en: 'Bots & integrations' },
+    icon: '⇄',
+    items: ['Telegram Bot API', 'REST API', 'Webhooks', 'LLM / AI tools'],
+  },
+  {
     title: { ru: 'Frontend', en: 'Frontend' },
     icon: '{ }',
-    items: ['JavaScript', 'TypeScript', 'React', 'HTML5', 'CSS3', 'Responsive Design'],
+    items: ['JavaScript', 'TypeScript', 'React', 'HTML5', 'CSS3'],
   },
   {
-    title: { ru: 'Backend', en: 'Backend' },
-    icon: '⇄',
-    items: ['Node.js', 'Express', 'REST API', 'Java (Spring)', 'Python'],
-  },
-  {
-    title: { ru: 'Базы данных', en: 'Databases' },
+    title: { ru: 'Backend и базы данных', en: 'Backend & databases' },
     icon: '▤',
-    items: ['PostgreSQL', 'SQL', 'SQLite'],
+    items: ['Node.js', 'Express', 'Java (Spring)', 'PostgreSQL', 'SQL', 'SQLite'],
   },
   {
     title: { ru: 'Инфраструктура', en: 'Infrastructure' },
     icon: '⚙',
-    items: ['Docker', 'Git / GitHub', 'GitHub Actions'],
-  },
-  {
-    title: { ru: 'AI в разработке', en: 'AI-assisted development' },
-    icon: '✦',
-    items: ['AI & LLM tools', 'Code review', 'Debugging'],
-  },
-  {
-    title: { ru: 'Процессы и качество', en: 'Process & quality' },
-    icon: '✓',
-    items: ['Jira / Confluence', 'SonarQube', 'Git workflow'],
+    items: ['Docker', 'Git / GitHub', 'GitHub Actions', 'Jira / Confluence'],
   },
 ];

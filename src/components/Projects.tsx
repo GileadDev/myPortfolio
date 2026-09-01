@@ -2,12 +2,14 @@ import { useMemo, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { projects, type Project } from '../content/projects';
 import { Section } from './Section';
+import { usePrefersReducedMotion } from '../hooks/useReveal';
 import { ExternalLinkIcon, GitHubIcon } from './Icons';
 
 const INITIAL_COUNT = 4;
 
 function ProjectCard({ project }: { project: Project }) {
   const { t, tr } = useLanguage();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
     <article
@@ -20,7 +22,19 @@ function ProjectCard({ project }: { project: Project }) {
           project.featured ? 'lg:w-1/2' : ''
         }`}
       >
-        {project.image ? (
+        {project.video && !prefersReducedMotion ? (
+          <video
+            src={project.video}
+            poster={project.image || undefined}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={tr(project.title)}
+            className="aspect-16/10 h-full w-full object-cover"
+          />
+        ) : project.image ? (
           <img
             src={project.image}
             alt={tr(project.title)}
