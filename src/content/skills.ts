@@ -8,33 +8,41 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: { ru: 'Python', en: 'Python' },
-    icon: '🐍',
-    items: ['Python', 'ООП', 'Django', 'Requests', 'asyncio'],
-  },
-  {
-    title: { ru: 'Парсинг данных', en: 'Web scraping' },
-    icon: '⛏',
-    items: ['Selenium', 'Playwright', 'BeautifulSoup', 'Scrapy'],
-  },
-  {
-    title: { ru: 'Боты и интеграции', en: 'Bots & integrations' },
-    icon: '⇄',
-    items: ['Telegram Bot API', 'REST API', 'Webhooks', 'LLM / AI tools'],
-  },
-  {
     title: { ru: 'Frontend', en: 'Frontend' },
     icon: '{ }',
-    items: ['JavaScript', 'TypeScript', 'React', 'HTML5', 'CSS3'],
+    items: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'JavaScript (ES6+)',
+      'HTML5 / CSS3',
+      'Tailwind CSS',
+      'shadcn/ui',
+    ],
   },
   {
-    title: { ru: 'Backend и базы данных', en: 'Backend & databases' },
-    icon: '▤',
-    items: ['Node.js', 'Express', 'Java (Spring)', 'PostgreSQL', 'SQL', 'SQLite'],
+    title: { ru: 'Формы и валидация', en: 'Forms & validation' },
+    icon: '✓',
+    items: ['React Hook Form', 'Zod', 'Runtime validation'],
   },
   {
-    title: { ru: 'Инфраструктура', en: 'Infrastructure' },
+    title: { ru: 'Backend и данные', en: 'Backend & data' },
+    icon: '⇄',
+    items: ['Node.js / Express', 'REST API', 'MongoDB / Mongoose', 'PostgreSQL', 'JWT auth'],
+  },
+  {
+    title: { ru: 'Инструменты и деплой', en: 'Tooling & deployment' },
     icon: '⚙',
-    items: ['Docker', 'Git / GitHub', 'GitHub Actions', 'Jira / Confluence'],
+    items: ['Git / GitHub', 'Docker', 'Vercel', 'GitHub Actions', 'ESLint / Prettier'],
+  },
+  {
+    title: { ru: 'AI в разработке', en: 'AI in development' },
+    icon: '✦',
+    items: ['AI & LLM tools', 'LangChain.js', 'OpenAI API'],
+  },
+  {
+    title: { ru: 'Процессы и качество', en: 'Process & quality' },
+    icon: '▤',
+    items: ['Jira / Confluence', 'SonarQube', 'Code review'],
   },
 ];

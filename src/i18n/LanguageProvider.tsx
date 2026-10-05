@@ -17,7 +17,6 @@ export type L10nList = Record<Locale, string[]>;
 
 type LanguageContextValue = {
   locale: Locale;
-  setLocale: (locale: Locale) => void;
   toggleLocale: () => void;
   t: (key: UiKey) => string;
   tr: (value: L10n) => string;
@@ -50,7 +49,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const value = useMemo<LanguageContextValue>(
     () => ({
       locale,
-      setLocale,
       toggleLocale,
       t: (key) => ui[key][locale],
       tr: (item) => item[locale],

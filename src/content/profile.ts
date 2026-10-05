@@ -7,33 +7,33 @@ export const profile = {
   } satisfies L10n,
 
   role: {
-    ru: 'Full Stack разработчик (Python / JavaScript)',
-    en: 'Full Stack Developer (Python / JavaScript)',
+    ru: 'Frontend-разработчик (React / Next.js)',
+    en: 'Frontend Developer (React / Next.js)',
   } satisfies L10n,
 
   tagline: {
-    ru: 'Пишу код, который автоматизирует рутину: парсеры, боты, интеграции с API и веб-сервисы на Python и JavaScript.',
-    en: 'I write code that automates the routine: scrapers, bots, API integrations and web services in Python and JavaScript.',
+    ru: 'Делаю типизированные интерфейсы с валидацией — от админок до публичных страниц — вместе с API и слоем данных за ними.',
+    en: 'I build typed, validated interfaces — from form-heavy admin panels to public pages — with the API and data layer behind them.',
   } satisfies L10n,
 
   about: {
     ru: [
-      'Full stack разработчик: Python на бэкенде и в автоматизации, React и TypeScript на фронтенде. Проектирую REST API, моделирую данные в PostgreSQL и контейнеризирую сервисы в Docker.',
-      'Автоматизирую то, что люди делают руками: парсеры для сбора и обработки данных, боты, интеграции с внешними сервисами. Разрабатывал голосового и SMS-агента на LLM — серверную логику диалогов, распознавание намерений и эскалацию на живого оператора.',
-      'Работаю в команде через Git, читаю и дорабатываю чужой и сгенерированный код, понимая логику реализации. Живу в Севилье, работаю удалённо.',
+      'Frontend-разработчик: React, Next.js и TypeScript. Собираю интерфейсы, где типы и схемы валидации общие для фронтенда и API, — ошибки ловятся на этапе сборки, а не в проде.',
+      'Есть практический опыт бэкенда: Node.js, REST API, MongoDB / Mongoose и PostgreSQL, JWT-авторизация в httpOnly cookie. Это позволяет вести фичу целиком — от формы на экране до эндпоинта и схемы данных.',
+      'Упаковываю проекты в Docker и выкладываю на Vercel. Живу в Севилье, работаю удалённо.',
     ],
     en: [
-      'Full stack developer: Python on the back end and in automation, React and TypeScript on the front end. I design REST APIs, model data in PostgreSQL and containerize services with Docker.',
-      'I automate what people do by hand: scrapers for collecting and processing data, bots, integrations with external services. I built an LLM-based voice and SMS agent — backend dialogue logic, intent recognition and escalation to a live operator.',
-      'I work in a team through Git and read and adapt both third-party and generated code with a clear grasp of the implementation. Based in Seville, working remotely.',
+      'Frontend developer working with React, Next.js and TypeScript. I build interfaces where types and validation schemas are shared between the client and the API, so mistakes surface at build time rather than in production.',
+      'I have hands-on backend experience: Node.js, REST APIs, MongoDB / Mongoose and PostgreSQL, JWT auth in httpOnly cookies. That lets me take a feature end to end — from the form on screen to the endpoint and the data schema.',
+      'I package projects with Docker and ship them to Vercel. Based in Seville, working remotely.',
     ],
   } satisfies L10nList,
 
   facts: {
     location: { ru: 'Севилья, Испания', en: 'Seville, Spain' } satisfies L10n,
     level: {
-      ru: 'Full Stack — Python / JavaScript',
-      en: 'Full Stack — Python / JavaScript',
+      ru: 'Frontend — React / Next.js',
+      en: 'Frontend — React / Next.js',
     } satisfies L10n,
     employment: { ru: 'Удалённая работа', en: 'Open to remote work' } satisfies L10n,
     languages: {
@@ -48,7 +48,6 @@ export const profile = {
 
   github: 'https://github.com/GileadDev',
   linkedin: 'https://www.linkedin.com/in/serhii-malyskevych-135a8737a/',
-  hh: '',
 
   resume: {
     ru: './Serhii_Malyskevych_CV_RU.pdf',

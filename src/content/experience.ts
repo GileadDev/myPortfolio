@@ -19,44 +19,44 @@ export type Education = {
 
 export const jobs: Job[] = [
   {
-    company: { ru: 'Собственная разработка', en: 'Own R&D' },
+    company: { ru: 'Тестовое задание', en: 'Test assignment' },
     position: {
-      ru: 'Разработчик AI-ассистента для разбора техники',
-      en: 'Developer — AI assistant for technique analysis',
+      ru: 'Frontend-разработчик — Form Builder',
+      en: 'Frontend Developer — Form Builder',
     },
-    start: { ru: '', en: '' },
-    end: { ru: '', en: '' },
+    start: { ru: 'Октябрь 2026', en: 'Oct 2026' },
+    end: { ru: 'Октябрь 2026', en: 'Oct 2026' },
     location: { ru: 'Удалённо', en: 'Remote' },
     highlights: {
       ru: [
-        'Разработал AI-ассистента, который разбирает прыжок по видеозаписи: покадровая скелетная разметка спортсмена, измерение оборотов в воздухе и определение типа прыжка.',
-        'Реализовал объяснимый вывод: каждое заключение сопровождается цепочкой признаков, уровнем уверенности и указанием кадров, на которых оно построено.',
-        'Заложил корректную обработку неопределённости: когда ракурс съёмки физически не позволяет различить Lutz и Flip по ребру конька, ассистент отвечает «не определяется» вместо догадки.',
-        'Логика реализована и проверена на демоверсии в полном объёме; внедрение в продукт не проводилось.',
+        'Конструктор форм на Next.js / React / TypeScript: CRUD в админке, редактор с превью и сайдбаром настроек, модалка подтверждения.',
+        'Общие Zod-схемы для API, редактора и ответов AI; публичные формы строят валидацию на лету из настроек полей (required, длина, min / max / step).',
+        'Бэкенд на Next.js Route Handlers с MongoDB / Mongoose и JWT в httpOnly cookie; сессия проверяется на каждой странице админки и в каждом эндпоинте.',
+        'Добавил AI-помощника (LangChain.js + OpenAI), который меняет поля по сообщению в чате; упаковал в Docker Compose и выложил на Vercel.',
       ],
       en: [
-        'Built an AI assistant that breaks down a jump from video: frame-by-frame skeleton tracking of the athlete, measurement of revolutions in the air and identification of the jump type.',
-        'Implemented explainable output: every conclusion carries the chain of cues behind it, a confidence level and the frames it was derived from.',
-        'Handled uncertainty properly: when the camera angle physically cannot separate a Lutz from a Flip by the blade edge, the assistant answers “not determinable” instead of guessing.',
-        'The logic was implemented and verified in full on the demo version; rollout into a product was not carried out.',
+        'Built a Next.js / React / TypeScript form builder: admin CRUD, an editor with live preview and a field settings sidebar, public forms with a confirmation modal.',
+        'Shared Zod schemas between the API, the editor and AI output; public forms build validation at runtime from field settings (required, length, min / max / step).',
+        'Backend on Next.js Route Handlers with MongoDB / Mongoose and JWT auth in httpOnly cookies; the session is checked on every admin page and endpoint.',
+        'Added an AI assistant (LangChain.js + OpenAI) that edits fields from chat; packaged with Docker Compose and deployed to Vercel.',
       ],
     },
-    tech: ['Python', 'Computer Vision', 'Pose Estimation', 'Video Analysis'],
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Zod', 'MongoDB', 'Docker'],
   },
   {
     company: { ru: 'Фриланс (Fiverr)', en: 'Freelance (Fiverr)' },
     position: {
-      ru: 'Инженер-разработчик — голосовой и SMS-агент на LLM',
+      ru: 'Инженер — голосовой и SMS-агент на LLM',
       en: 'Engineer — LLM Voice & SMS Agent',
     },
-    start: { ru: '15.01.2026', en: '15.01.2026' },
-    end: { ru: '12.07.2026', en: '12.07.2026' },
+    start: { ru: 'Январь 2026', en: 'Jan 2026' },
+    end: { ru: 'Июль 2026', en: 'Jul 2026' },
     location: { ru: 'Удалённо', en: 'Remote' },
     highlights: {
       ru: [
-        'Участвовал в разработке и настройке LLM-агента для обработки звонков и SMS, включая серверную логику диалогов и эскалации.',
-        'Разрабатывал и интегрировал обработку данных, связывающую распознавание намерений, контекст и автоматическую эскалацию оператору.',
-        'Работал в распределённой команде через Git; проверял и дорабатывал сгенерированный ИИ бэкенд-код на корректность и поддерживаемость.',
+        'Участвовал в разработке и настройке LLM-агента, который обрабатывает входящие звонки и SMS, включая бэкенд-логику диалога и эскалации.',
+        'Разработал и интегрировал обработку данных: распознавание намерений, работа с контекстом и автоматическая передача живому оператору.',
+        'Работал с распределённой командой через Git; проверял и дорабатывал сгенерированную AI бэкенд-логику на корректность и поддерживаемость.',
       ],
       en: [
         'Supported development and configuration of an LLM-based agent handling incoming calls and SMS, including backend logic for dialogue flow and escalation.',
@@ -64,7 +64,7 @@ export const jobs: Job[] = [
         'Collaborated with a distributed technical team using Git; reviewed and adjusted AI-generated backend logic for correctness and maintainability.',
       ],
     },
-    tech: ['Python', 'LLM / AI tools', 'REST API', 'Git'],
+    tech: ['LLM / AI tools', 'REST API', 'Git'],
   },
   {
     company: { ru: 'Самостоятельно', en: 'Self-directed' },
@@ -77,24 +77,43 @@ export const jobs: Job[] = [
     location: { ru: 'Удалённо', en: 'Remote' },
     highlights: {
       ru: [
-        'Разрабатывал full stack веб-приложения: фронтенд на React/TypeScript, API на Node.js/Express и хранилище на PostgreSQL.',
-        'Проектировал и использовал REST API, работал с DOM, обработкой событий и асинхронным JavaScript на клиенте.',
-        'Контейнеризировал сервисы с Docker, использовал SQL/SQLite для локального хранения данных при разработке.',
+        'Создавал full stack веб-приложения: фронтенд на React / TypeScript, API на Node.js / Express, данные в PostgreSQL.',
+        'Проектировал и использовал REST API; работал с DOM, событиями и асинхронным JavaScript на клиенте; контейнеризировал сервисы в Docker.',
       ],
       en: [
-        'Built full stack web applications pairing React/TypeScript front ends with Node.js/Express APIs and PostgreSQL data stores.',
-        'Designed and consumed REST APIs, handled DOM manipulation, event handling and asynchronous JavaScript on the client.',
-        'Containerized services with Docker and used SQL/SQLite for local data persistence during development.',
+        'Built full stack web applications with React / TypeScript front ends, Node.js / Express APIs and PostgreSQL data stores.',
+        'Designed and consumed REST APIs; handled DOM manipulation, events and asynchronous JavaScript on the client; containerized services with Docker.',
       ],
     },
-    tech: ['Python', 'React', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
+  },
+  {
+    company: { ru: 'Собственный R&D · демо-версия', en: 'Own R&D · demo version' },
+    position: {
+      ru: 'Разработчик — AI-ассистент для анализа техники',
+      en: 'Developer — AI assistant for technique analysis',
+    },
+    start: { ru: '', en: '' },
+    end: { ru: '', en: '' },
+    location: { ru: 'Удалённо', en: 'Remote' },
+    highlights: {
+      ru: [
+        'Создал AI-ассистента, который разбирает прыжок фигуриста по видео: отслеживает скелет по кадрам, считает обороты и определяет тип прыжка.',
+        'Каждый вывод объясняется признаками, уверенностью и кадрами; в спорных случаях ассистент отвечает «невозможно определить», а не угадывает.',
+      ],
+      en: [
+        'Built an AI assistant that analyzes a figure-skating jump from video: frame-by-frame skeleton tracking, rotation measurement and jump type identification.',
+        'Designed explainable output: every conclusion lists its cues, confidence level and source frames, and the assistant answers “not determinable” instead of guessing.',
+      ],
+    },
+    tech: ['Computer Vision', 'Pose Estimation', 'Video Analysis'],
   },
 ];
 
 export const education: Education[] = [
   {
     institution: {
-      ru: 'Одесский политехнический национальный университет',
+      ru: 'Национальный университет «Одесская политехника»',
       en: 'Odesa Polytechnic National University',
     },
     title: {
@@ -106,9 +125,9 @@ export const education: Education[] = [
   {
     institution: { ru: 'STEP IT Academy', en: 'STEP IT Academy' },
     title: {
-      ru: 'Java-разработка — основы, ООП, алгоритмы, структуры данных',
+      ru: 'Разработка на Java — основы, ООП, алгоритмы, структуры данных',
       en: 'Java Development — fundamentals, OOP, algorithms, data structures',
     },
-    period: { ru: 'Сентябрь 2015 — февраль 2016', en: 'Sep 2015 — Feb 2016' },
+    period: { ru: 'сен 2015 — фев 2016', en: 'Sep 2015 — Feb 2016' },
   },
 ];

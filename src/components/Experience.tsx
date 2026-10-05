@@ -18,7 +18,7 @@ export function Experience() {
 
             {tr(job.start) && (
               <p className="font-mono text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-500">
-                {tr(job.start)} — {tr(job.end) || t('experience.present')}
+                {tr(job.end) === tr(job.start) ? tr(job.start) : `${tr(job.start)} — ${tr(job.end) || t('experience.present')}`}
               </p>
             )}
 
