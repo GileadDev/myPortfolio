@@ -8,6 +8,7 @@ export function About() {
   const facts = [
     { label: t('about.location'), value: tr(profile.facts.location) },
     { label: t('about.level'), value: tr(profile.facts.level) },
+    { label: t('about.core'), value: tr(profile.facts.core) },
     { label: t('about.employment'), value: tr(profile.facts.employment) },
     { label: t('about.languages'), value: tr(profile.facts.languages) },
   ];

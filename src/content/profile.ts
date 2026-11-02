@@ -7,38 +7,42 @@ export const profile = {
   } satisfies L10n,
 
   role: {
-    ru: 'Frontend-разработчик (React / Next.js)',
-    en: 'Frontend Developer (React / Next.js)',
+    ru: 'Full-Stack Developer | React · Next.js · TypeScript · Python',
+    en: 'Full-Stack Developer | React · Next.js · TypeScript · Python',
   } satisfies L10n,
 
   tagline: {
-    ru: 'Делаю типизированные интерфейсы с валидацией — от админок до публичных страниц — вместе с API и слоем данных за ними.',
-    en: 'I build typed, validated interfaces — from form-heavy admin panels to public pages — with the API and data layer behind them.',
+    ru: 'Разрабатываю современные веб-приложения - от продуманных интерфейсов до серверной логики, API и AI-интеграций. Создаю масштабируемые решения с акцентом на производительность и качество кода.',
+    en: 'I develop modern web applications - from intuitive user interfaces to backend logic, APIs, and AI integrations. I build scalable solutions with a strong focus on performance, code quality, and maintainability.',
   } satisfies L10n,
 
   about: {
     ru: [
-      'Frontend-разработчик: React, Next.js и TypeScript. Собираю интерфейсы, где типы и схемы валидации общие для фронтенда и API, — ошибки ловятся на этапе сборки, а не в проде.',
-      'Есть практический опыт бэкенда: Node.js, REST API, MongoDB / Mongoose и PostgreSQL, JWT-авторизация в httpOnly cookie. Это позволяет вести фичу целиком — от формы на экране до эндпоинта и схемы данных.',
-      'Упаковываю проекты в Docker и выкладываю на Vercel. Живу в Севилье, работаю удалённо.',
+      'Я Full-Stack разработчик, специализирующийся на React, Next.js, TypeScript, Node.js и Python. Создаю современные веб-приложения, объединяя удобные пользовательские интерфейсы, надёжную серверную архитектуру, API и базы данных.',
+      'Имею опыт разработки полноценных веб-систем, проектирования REST API, работы с PostgreSQL, MongoDB и Redis. Использую Docker, Git и современные инструменты разработки. Самостоятельно реализую функциональность на всех этапах - от проектирования и написания кода до тестирования и развёртывания.',
+      'Активно работаю с AI-технологиями, включая OpenAI API, LangChain и LLM. Разрабатываю интеллектуальных ассистентов, автоматизацию процессов и AI-интеграции. В работе уделяю особое внимание производительности, масштабируемости и качеству архитектурных решений.',
     ],
     en: [
-      'Frontend developer working with React, Next.js and TypeScript. I build interfaces where types and validation schemas are shared between the client and the API, so mistakes surface at build time rather than in production.',
-      'I have hands-on backend experience: Node.js, REST APIs, MongoDB / Mongoose and PostgreSQL, JWT auth in httpOnly cookies. That lets me take a feature end to end — from the form on screen to the endpoint and the data schema.',
-      'I package projects with Docker and ship them to Vercel. Based in Seville, working remotely.',
+      'I\'m a Full-Stack Developer specializing in React, Next.js, TypeScript, Node.js, and Python. I build modern web applications, combining intuitive user interfaces with reliable backend architecture, APIs, and databases',
+      'I have hands-on experience developing complete web systems, designing REST APIs, and working with PostgreSQL, MongoDB, and Redis. I use Docker, Git, and modern development tools. I independently manage the entire development process - from architecture and implementation to testing and deployment.',
+      'I actively work with AI technologies, including OpenAI API, LangChain, and LLMs. I develop intelligent assistants, workflow automation solutions, and AI integrations. My focus is on performance, scalability, clean code, and well-structured software architecture.',
     ],
   } satisfies L10nList,
 
   facts: {
     location: { ru: 'Севилья, Испания', en: 'Seville, Spain' } satisfies L10n,
     level: {
-      ru: 'Frontend — React / Next.js',
-      en: 'Frontend — React / Next.js',
+      ru: 'Full-Stack Development',
+      en: 'Full-Stack Development',
     } satisfies L10n,
+    core: {
+      ru: 'React, Next.js, TypeScript, Node.js, Python',
+      en: 'React, Next.js, TypeScript, Node.js, Python',
+    }satisfies L10n,
     employment: { ru: 'Удалённая работа', en: 'Open to remote work' } satisfies L10n,
     languages: {
-      ru: 'Украинский — родной, English — B1, Español — A2',
-      en: 'Ukrainian — native, English — B1, Spanish — A2',
+      ru: 'Украинский — родной, English — B2, Español — A2',
+      en: 'Ukrainian — native, English — B2, Spanish — A2',
     } satisfies L10n,
   },
 

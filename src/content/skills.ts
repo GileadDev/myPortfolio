@@ -28,7 +28,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: { ru: 'Backend и данные', en: 'Backend & data' },
     icon: '⇄',
-    items: ['Node.js / Express', 'REST API', 'MongoDB / Mongoose', 'PostgreSQL', 'JWT auth'],
+    items: ['Node.js / Express', 'REST API', 'MongoDB / Mongoose', 'PostgreSQL', 'JWT auth', 'Python'],
   },
   {
     title: { ru: 'Инструменты и деплой', en: 'Tooling & deployment' },

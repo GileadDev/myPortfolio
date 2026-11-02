@@ -21,6 +21,7 @@ export const ui = {
   'about.factsTitle': { ru: 'Факты', en: 'Quick facts' },
   'about.location': { ru: 'Локация', en: 'Location' },
   'about.level': { ru: 'Уровень', en: 'Level' },
+  'about.core': { ru: 'Основной стек', en: 'Core stack' },
   'about.employment': { ru: 'Формат', en: 'Employment' },
   'about.languages': { ru: 'Языки', en: 'Languages' },
 
